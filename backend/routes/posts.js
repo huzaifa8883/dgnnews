@@ -470,6 +470,9 @@ router.get("/", async (req, res) => {
   const posts = await Post.find().sort({ createdAt: -1 });
   res.json(posts);
 });
+router.get("/test", (req, res) => {
+  res.json({ message: "Test route works" });
+});
 
 /* GET posts by category */
 router.get("/category/:cat", async (req, res) => {
