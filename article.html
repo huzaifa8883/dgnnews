@@ -320,76 +320,73 @@
 </header>
 
   <!-- Main Layout with Sidebars -->
-  <div class="container mx-auto px-4 py-12">
-    <div id="loader" class="loader"></div>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div id="loader" class="loader text-center py-20">لوڈ ہو رہا ہے...</div>
 
-    <div id="article-content" class="hidden grid grid-cols-1 lg:grid-cols-4 gap-10">
-      <!-- Left Sidebar: Featured News -->
-      <aside class="hidden lg:block space-y-8">
-        <h2 class="text-3xl font-bold mb-8 border-b-4 border-primary pb-3 inline-block">Featured News</h2>
-        <div id="featured-sidebar" class="space-y-6">
-          <!-- Featured cards loaded here -->
-        </div>
-      </aside>
+    <div id="article-content" class="hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-10">
 
-      <!-- Center: Main Article -->
-      <main class="lg:col-span-2">
-        <article>
-          <div class="text-center mb-12">
-            <span id="article-category" class="category-badge inline-block mb-6"></span>
-            <h1 id="article-title" class="article-title mb-8"></h1>
-            <p id="article-date" class="timestamp"></p>
-          </div>
+        <!-- Left Sidebar (Featured) - Desktop only -->
+        <aside class="hidden lg:block lg:col-span-3 space-y-10">
+          <h2 class="text-2xl lg:text-3xl font-bold border-b-4 border-red-600 pb-3 inline-block">نمایاں خبریں</h2>
+          <div id="featured-sidebar" class="space-y-6"></div>
+        </aside>
 
-          <!-- Short Description -->
-          <div id="short-desc-container" class="mb-12"></div>
+        <!-- Main Article -->
+        <main class="lg:col-span-6 xl:col-span-6">
+          <article>
+            <!-- Header -->
+            <div class="text-center mb-8 lg:mb-12">
+              <span id="article-category" class="inline-block px-4 py-1 bg-red-600 text-white font-bold rounded-full text-sm uppercase tracking-wide mb-4"></span>
+              <h1 id="article-title" class="article-title font-bold text-gray-900"></h1>
+              <p id="article-date" class="text-gray-500 mt-3 text-sm lg:text-base"></p>
+            </div>
 
-          <!-- Main Image -->
-          <div class="main-image mb-12">
-            <img id="article-image" src="" alt="" class="w-full object-cover h-auto max-h-[700px]">
-          </div>
+            <!-- Short Description -->
+            <div id="short-desc-container" class="mb-10 lg:mb-16"></div>
 
-          <!-- Detailed Content -->
-          <div class="article-content">
-            <div id="sections-container" class="space-y-12"></div>
+            <!-- Main Image -->
+            <div class="main-image mb-10 lg:mb-16">
+              <img id="article-image" src="" alt="Article Image" class="w-full rounded-xl shadow-lg">
+            </div>
+
+            <!-- Content Sections -->
+            <div id="sections-container" class="text-content space-y-10 lg:space-y-16"></div>
 
             <!-- Share Section -->
-            <div class="share-section text-center my-16 py-8 border-y-2 border-gray-200">
-              <span class="text-xl font-bold mr-8">Share this article:</span>
-              <div class="inline-flex gap-5">
-                <div class="share-btn"><i class="fab fa-facebook-f"></i></div>
-                <div class="share-btn"><i class="fab fa-twitter"></i></div>
-                <div class="share-btn"><i class="fab fa-whatsapp"></i></div>
-                <div class="share-btn"><i class="fas fa-link"></i></div>
+            <div class="share-section text-center my-12 lg:my-16 py-8 border-y-2 border-gray-200">
+              <p class="text-lg lg:text-xl font-bold mb-4">اس خبر کو شیئر کریں:</p>
+              <div class="flex justify-center gap-6 text-2xl">
+                <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-sky-500 hover:text-sky-700"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-green-600 hover:text-green-800"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="text-gray-700 hover:text-gray-900"><i class="fas fa-link"></i></a>
               </div>
             </div>
-          </div>
-        </article>
-      </main>
+          </article>
+        </main>
 
-      <!-- Right Sidebar: Related Articles -->
-      <aside class="space-y-8">
-        <h2 class="text-3xl font-bold mb-8 border-b-4 border-primary pb-3 inline-block">Related Articles</h2>
-        <div id="related-sidebar" class="space-y-6">
-          <!-- Related cards loaded here -->
-        </div>
-      </aside>
-    </div>
+        <!-- Right Sidebar (Related) - Desktop only -->
+        <aside class="hidden lg:block lg:col-span-3 space-y-10">
+          <h2 class="text-2xl lg:text-3xl font-bold border-b-4 border-red-600 pb-3 inline-block">متعلقہ خبریں</h2>
+          <div id="related-sidebar" class="space-y-6"></div>
+        </aside>
+      </div>
 
-    <!-- Mobile Only: Related + Featured Below Article -->
-    <div id="mobile-below" class="hidden lg:hidden mt-20 space-y-16">
-      <section>
-        <h2 class="text-3xl font-bold mb-8 text-center border-b-4 border-primary pb-3 inline-block">Related Articles</h2>
-        <div id="related-mobile" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
-      </section>
+      <!-- Mobile Only: Related + Featured below article -->
+      <div id="mobile-below" class="lg:hidden mt-16 space-y-16">
+        <section>
+          <h2 class="text-2xl font-bold text-center border-b-4 border-red-600 pb-3 mb-8">متعلقہ خبریں</h2>
+          <div id="related-mobile" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
+        </section>
 
-      <section>
-        <h2 class="text-3xl font-bold mb-8 text-center border-b-4 border-primary pb-3 inline-block">Featured News</h2>
-        <div id="featured-mobile" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
-      </section>
+        <section>
+          <h2 class="text-2xl font-bold text-center border-b-4 border-red-600 pb-3 mb-8">نمایاں خبریں</h2>
+          <div id="featured-mobile" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
+        </section>
+      </div>
     </div>
   </div>
-
   <!-- Footer -->
 <footer class="bg-[#0f172a] text-slate-300 mt-16 border-t-4 border-red-600">
   <div class="container mx-auto px-6 py-16">
@@ -470,127 +467,114 @@
   </div>
 </footer>
 
-  <script>
+<script>
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
     let allPosts = [];
     let currentPost = null;
 
     async function loadArticle() {
-        if (!postId) return showError("No article ID found");
+      if (!postId) return showError("آرٹیکل کا آئی ڈی نہیں ملا");
 
-        try {
-            // Load current article
-            const res = await fetch(`https://newsing.work.gd/posts/${postId}`);
-            if (!res.ok) throw new Error("Article not found");
-            currentPost = await res.json();
+      try {
+        const res = await fetch(`https://newsing.work.gd/posts/${postId}`);
+        if (!res.ok) throw new Error("آرٹیکل نہیں ملا");
+        currentPost = await res.json();
 
-            // Load all posts for sidebars
-            const allRes = await fetch("https://newsing.work.gd/posts");
-            allPosts = await allRes.json();
+        const allRes = await fetch("https://newsing.work.gd/posts");
+        allPosts = await allRes.json();
 
-            // Populate main article
-            document.getElementById('page-title').innerText = `${currentPost.title} | SAMAA TV`;
-            document.getElementById('article-title').innerText = currentPost.title;
+        // Page title
+        document.getElementById('page-title').innerText = `${currentPost.title} | SAMAA TV`;
 
-            const catText = currentPost.category ? currentPost.category.replace(" > ", " → ").toUpperCase() : "NEWS";
-            document.getElementById('article-category').innerText = catText;
+        // Article header
+        document.getElementById('article-title').innerText = currentPost.title;
 
-            // const date = new Date(currentPost.createdAt);
-            // document.getElementById('article-date').innerText = date.toLocaleDateString('en-US', {
-            //     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-            // }) + ' — ' + date.toLocaleTimeString([], { hour: 'numeric', minute: 'numeric' });
+        const catText = currentPost.category ? currentPost.category.replace(" > ", " → ").toUpperCase() : "NEWS";
+        document.getElementById('article-category').innerText = catText;
 
-            document.getElementById('article-image').src = currentPost.image || 'https://via.placeholder.com/1400x800?text=No+Image';
+        // Uncomment and adjust date if needed
+        // const date = new Date(currentPost.createdAt);
+        // document.getElementById('article-date').innerText = date.toLocaleString('ur-PK', { dateStyle: 'full', timeStyle: 'short' });
 
-            // Short Description
-            if (currentPost.shortDesc && currentPost.shortDesc.trim()) {
-                document.getElementById('short-desc-container').innerHTML = `
-                    <div class="text-2xl leading-relaxed font-medium text-gray-800 bg-gray-50 border-l-8 border-primary pl-8 py-8 rounded-r-2xl shadow-lg my-12">
-                        ${currentPost.shortDesc.replace(/\n/g, '<br><br>')}
-                    </div>
-                `;
-            }
+        document.getElementById('article-image').src = currentPost.image || 'https://via.placeholder.com/1200x800?text=No+Image';
 
-            // Sections
-            const container = document.getElementById('sections-container');
-            container.innerHTML = '';
-            if (currentPost.sections && currentPost.sections.length > 0) {
-                currentPost.sections.forEach(sec => {
-                    const div = document.createElement('div');
-                    div.innerHTML = `
-                        <h2 class="section-heading">${sec.heading}</h2>
-                        <div class="text-justify text-xl leading-9 text-gray-700">${sec.content.replace(/\n/g, '<br>')}</div>
-
-                    `;
-                    container.appendChild(div);
-                });
-            }
-
-            // Load sidebars
-            loadSidebars();
-
-            // Show content
-            document.getElementById('loader').classList.add('hidden');
-            document.getElementById('article-content').classList.remove('hidden');
-            document.getElementById('mobile-below').classList.remove('hidden');
-
-        } catch (err) {
-            console.error(err);
-            showError("Article could not be loaded");
+        // Short Description (better styling)
+        if (currentPost.shortDesc && currentPost.shortDesc.trim()) {
+          document.getElementById('short-desc-container').innerHTML = `
+            <blockquote class="short-desc text-gray-800 bg-red-50 border-r-4 border-red-600 p-6 lg:p-10 rounded-xl shadow-md leading-relaxed">
+              ${currentPost.shortDesc.replace(/\n/g, '<br><br>')}
+            </blockquote>
+          `;
         }
+
+        // Sections
+        const container = document.getElementById('sections-container');
+        container.innerHTML = '';
+        if (currentPost.sections && currentPost.sections.length > 0) {
+          currentPost.sections.forEach(sec => {
+            const div = document.createElement('div');
+            div.innerHTML = `
+              <h2 class="section-heading font-bold text-gray-900 mb-5">${sec.heading}</h2>
+              <div class="text-content text-gray-800">${sec.content.replace(/\n/g, '<br>')}</div>
+            `;
+            container.appendChild(div);
+          });
+        }
+
+        loadSidebars();
+        document.getElementById('loader').classList.add('hidden');
+        document.getElementById('article-content').classList.remove('hidden');
+        document.getElementById('mobile-below').classList.remove('hidden');
+
+      } catch (err) {
+        console.error(err);
+        showError("آرٹیکل لوڈ نہیں ہو سکا");
+      }
     }
 
     function loadSidebars() {
-        const related = allPosts
-            .filter(p => p._id !== postId)
-            .sort(() => 0.5 - Math.random())
-            .slice(0, 10);
+      const related = allPosts.filter(p => p._id !== postId).sort(() => 0.5 - Math.random()).slice(0, 12);
+      const featured = allPosts.filter(p => p.category?.includes("Featured")).slice(0, 6) || related;
 
-        const featured = allPosts
-            .filter(p => p.category && p.category.includes("Featured"))
-            .slice(0, 6);
+      renderSidebar('#featured-sidebar', featured.length ? featured : related.slice(0, 6));
+      renderSidebar('#related-sidebar', related.slice(0, 6));
 
-        // Desktop: Left = Featured, Right = Related
-        renderSidebar('#featured-sidebar', featured.length ? featured : related.slice(0, 6));
-        renderSidebar('#related-sidebar', related.slice(0, 6));
-
-        // Mobile: Below article
-        renderSidebar('#related-mobile', related.slice(0, 6), true);
-        renderSidebar('#featured-mobile', featured.length ? featured : related.slice(6, 12), true);
+      renderSidebar('#related-mobile', related.slice(0, 6), true);
+      renderSidebar('#featured-mobile', featured.length ? featured : related.slice(6, 12), true);
     }
 
     function renderSidebar(containerId, posts, isMobile = false) {
-        const container = document.querySelector(containerId);
-        container.innerHTML = '';
+      const container = document.querySelector(containerId);
+      container.innerHTML = '';
 
-        posts.forEach(post => {
-            const card = document.createElement('div');
-            card.className = 'sidebar-card bg-white overflow-hidden rounded-lg';
-            card.onclick = () => location.href = `article.html?id=${post._id}`;
+      posts.forEach(post => {
+        const card = document.createElement('div');
+        card.className = 'sidebar-card bg-white rounded-xl overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition-all';
+        card.onclick = () => location.href = `article.html?id=${post._id}`;
 
-            const preview = post.shortDesc || (post.sections?.[0]?.content) || post.desc || '';
+        const preview = (post.shortDesc || post.sections?.[0]?.content || '').substring(0, 120) + '...';
 
-            card.innerHTML = `
-                <img src="${post.image || 'https://via.placeholder.com/300x200'}" class="w-full h-48 object-cover">
-                <div class="p-5">
-                    <h3 class="font-bold text-lg mb-2 line-clamp-2">${post.title}</h3>
-                    ${isMobile ? `<p class="text-gray-600 text-sm line-clamp-2 mb-3">${preview.substring(0, 100)}...</p>` : ''}
-                    <span class="text-xs text-gray-500">${new Date(post.createdAt).toLocaleDateString()}</span>
-                </div>
-            `;
-            container.appendChild(card);
-        });
+        card.innerHTML = `
+          <img src="${post.image || 'https://via.placeholder.com/400x260'}" class="w-full h-44 sm:h-48 lg:h-52 object-cover" alt="${post.title}">
+          <div class="p-4 lg:p-5">
+            <h3 class="font-bold text-base lg:text-lg mb-2 line-clamp-2">${post.title}</h3>
+            ${isMobile ? `<p class="text-gray-600 text-sm line-clamp-2 mb-3">${preview}</p>` : ''}
+            <span class="text-xs text-gray-500">${new Date(post.createdAt).toLocaleDateString('ur-PK')}</span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
     }
 
     function showError(msg) {
-        document.body.innerHTML = `
-            <div class="text-center py-32">
-                <h1 class="text-6xl font-bold text-red-700 mb-8">Article Not Found</h1>
-                <p class="text-2xl text-gray-700 mb-10">${msg}</p>
-                <a href="index.html" class="inline-block bg-primary text-white px-10 py-4 rounded-lg font-bold">← Back to Home</a>
-            </div>
-        `;
+      document.body.innerHTML = `
+        <div class="text-center py-32 px-6">
+          <h1 class="text-5xl lg:text-6xl font-bold text-red-700 mb-6">آرٹیکل نہیں ملا</h1>
+          <p class="text-xl lg:text-2xl text-gray-700 mb-10">${msg}</p>
+          <a href="index.html" class="inline-block bg-red-600 text-white px-10 py-4 rounded-xl font-bold hover:bg-red-700 transition">← ہوم پیج پر واپس</a>
+        </div>
+      `;
     }
 
     loadArticle();
