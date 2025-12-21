@@ -40,10 +40,10 @@ cloudinary.config({
 const upload = multer({ storage: multer.memoryStorage() });
 
 // ---------- ROUTES ----------
-app.use("/api/posts", postRoutes);
+app.use("/posts", postRoutes);
 
 // Upload route using Cloudinary
-app.post("/api/upload", upload.single("image"), async (req, res) => {
+app.post("/upload", upload.single("image"), async (req, res) => {
     if (!req.file) return res.status(400).json({ error: "No file uploaded" });
 
     try {
