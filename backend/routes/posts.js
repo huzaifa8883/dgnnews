@@ -466,7 +466,7 @@ router.get("/health", async (req, res) => {
   }
 });
 /* GET all posts */
-router.get("/", async (req, res) => {
+router.get("", async (req, res) => {
   const posts = await Post.find().sort({ createdAt: -1 });
   res.json(posts);
 });
