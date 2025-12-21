@@ -481,12 +481,12 @@
 
         try {
             // Load current article
-            const res = await fetch(`http://localhost:5000/api/posts/${postId}`);
+            const res = await fetch(`https://newsing.work.gd/posts/${postId}`);
             if (!res.ok) throw new Error("Article not found");
             currentPost = await res.json();
 
             // Load all posts for sidebars
-            const allRes = await fetch("http://localhost:5000/api/posts");
+            const allRes = await fetch("https://newsing.work.gd/posts");
             allPosts = await allRes.json();
 
             // Populate main article

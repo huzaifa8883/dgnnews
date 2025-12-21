@@ -400,7 +400,7 @@
   <script>
   async function loadLatestNews() {
     try {
-      const url = "http://localhost:5000/api/posts/latest";
+      const url = "https://newsing.work.gd/posts/latest";
       const res = await fetch(url);
       if (!res.ok) {
         console.error("Fetch failed:", res.status, await res.text());

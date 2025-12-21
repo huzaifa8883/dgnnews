@@ -466,10 +466,17 @@ router.get("/health", async (req, res) => {
   }
 });
 /* GET all posts */
-router.get("", async (req, res) => {
-  const posts = await Post.find().sort({ createdAt: -1 });
-  res.json(posts);
+// GET all posts (exactly for /posts)
+router.get("/", async (req, res) => {
+  try {
+    const posts = await Post.find().sort({ createdAt: -1 });
+    res.json(posts);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
 });
+
 router.get("/test", (req, res) => {
   res.json({ message: "Test route works" });
 });

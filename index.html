@@ -655,7 +655,7 @@ loadHomePage();
 <script>
 async function loadHomePage() {
     try {
-        const res = await fetch("http://localhost:5000/api/posts/home");
+        const res = await fetch("https://newsing.work.gd/posts/home");
         if (!res.ok) throw new Error("Failed to fetch home data");
 
         const { topStory, featuredPosts, popularPosts, latestPosts } = await res.json();

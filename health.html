@@ -440,7 +440,7 @@
 
   async function loadPosts(subcategory = '') {
     try {
-      const url = `http://localhost:5000/api/posts/health${subcategory ? `?subcategory=${subcategory}` : ''}`;
+      const url = `https://newsing.work.gd/posts/health${subcategory ? `?subcategory=${subcategory}` : ''}`;
       const res = await fetch(url);
       if (!res.ok) {
         console.error("Fetch failed:", res.status, await res.text());
