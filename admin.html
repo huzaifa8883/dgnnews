@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dgnnews | Enterprise Admin Panel</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/2.30.0/cdn.min.js"></script>
 
     <script>
         tailwind.config = {
@@ -16,20 +15,10 @@
             theme: {
                 extend: {
                     colors: {
-                        dark: {
-                            900: '#09090b', // Main bg
-                            800: '#18181b', // Cards
-                            700: '#27272a', // Borders
-                        },
-                        brand: {
-                            500: '#6366f1', // Indigo
-                            600: '#4f46e5',
-                            accent: '#8b5cf6', // Violet
-                        }
+                        dark: { 900: '#09090b', 800: '#18181b', 700: '#27272a' },
+                        brand: { 500: '#6366f1', 600: '#4f46e5', accent: '#8b5cf6' }
                     },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
                 }
             }
         }
@@ -37,23 +26,21 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
         body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; }
-        
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #09090b; }
         ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
 
-        /* Glassmorphism Utilities */
+        /* Glassmorphism */
         .glass-panel {
             background: rgba(24, 24, 27, 0.6);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-
         .glass-sidebar {
             background: rgba(9, 9, 11, 0.85);
             backdrop-filter: blur(20px);
@@ -63,28 +50,27 @@
         /* Animations */
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
-        
-        .gradient-text {
-            background: linear-gradient(to right, #818cf8, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
 
         .sidebar-item.active {
             background: linear-gradient(90deg, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 100%);
             border-left: 3px solid #6366f1;
-            color: #fff;
+            color: #fff !important;
+        }
+        .sidebar-item:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.05);
         }
     </style>
 </head>
 <body class="overflow-hidden h-screen flex bg-dark-900 text-gray-300">
 
-    <div id="overlay" class="fixed inset-0 bg-black/80 z-40 hidden lg:hidden backdrop-blur-sm transition-opacity"></div>
+    <!-- Overlay for mobile sidebar -->
+    <div id="overlay" class="fixed inset-0 bg-black/80 z-40 hidden lg:hidden backdrop-blur-sm"></div>
 
+    <!-- Sidebar -->
     <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 z-50 w-72 glass-sidebar flex flex-col transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
         <div class="h-20 flex items-center gap-3 px-8 border-b border-dark-700/50">
             <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-brand-accent flex items-center justify-center shadow-lg shadow-brand-500/20">
-                <i data-lucide="zap" class="text-white w-6 h-6 fill-current"></i>
+                <i data-lucide="zap" class="text-white w-6 h-6"></i>
             </div>
             <div>
                 <h1 class="text-xl font-bold text-white tracking-tight">Dgnnews</h1>
@@ -95,29 +81,29 @@
         <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
             <p class="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Overview</p>
             
-            <a href="#" onclick="switchView('dashboard')" id="nav-dashboard" class="sidebar-item active flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium hover:text-white transition-colors group">
-                <i data-lucide="layout-grid" class="w-5 h-5 group-hover:text-brand-500 transition-colors"></i>
+            <a href="#" onclick="switchView('dashboard')" id="nav-dashboard" class="sidebar-item active flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-gray-300 group">
+                <i data-lucide="layout-grid" class="w-5 h-5 text-gray-500 group-hover:text-brand-500 transition-colors"></i>
                 Dashboard
             </a>
             
-            <a href="#" onclick="switchView('posts')" id="nav-posts" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium hover:text-white hover:bg-white/5 transition-all group">
-                <i data-lucide="file-text" class="w-5 h-5 group-hover:text-brand-500 transition-colors"></i>
+            <a href="#" onclick="switchView('posts')" id="nav-posts" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-gray-300 group">
+                <i data-lucide="file-text" class="w-5 h-5 text-gray-500 group-hover:text-brand-500 transition-colors"></i>
                 All Posts
             </a>
 
-            <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium hover:text-white hover:bg-white/5 transition-all group">
-                <i data-lucide="bar-chart-2" class="w-5 h-5 group-hover:text-brand-500 transition-colors"></i>
+            <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-gray-300 group">
+                <i data-lucide="bar-chart-2" class="w-5 h-5 text-gray-500 group-hover:text-brand-500 transition-colors"></i>
                 Analytics
             </a>
 
             <p class="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 mt-8">Management</p>
             
-            <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium hover:text-white hover:bg-white/5 transition-all group">
-                <i data-lucide="users" class="w-5 h-5 group-hover:text-brand-500 transition-colors"></i>
+            <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-gray-300 group">
+                <i data-lucide="users" class="w-5 h-5 text-gray-500 group-hover:text-brand-500 transition-colors"></i>
                 Team Members
             </a>
-            <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium hover:text-white hover:bg-white/5 transition-all group">
-                <i data-lucide="settings" class="w-5 h-5 group-hover:text-brand-500 transition-colors"></i>
+            <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-gray-300 group">
+                <i data-lucide="settings" class="w-5 h-5 text-gray-500 group-hover:text-brand-500 transition-colors"></i>
                 Settings
             </a>
         </nav>
@@ -126,7 +112,7 @@
             <div class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 cursor-pointer transition-colors">
                 <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Admin" class="w-10 h-10 rounded-full border-2 border-brand-500">
                 <div class="flex-1">
-                    <p class="text-sm font-semibold text-white">Muhammad huzaifa</p>
+                    <p class="text-sm font-semibold text-white">Muhammad Huzaifa</p>
                     <p class="text-xs text-gray-500">Chief Editor</p>
                 </div>
                 <i data-lucide="chevron-up" class="w-4 h-4 text-gray-500"></i>
@@ -134,6 +120,7 @@
         </div>
     </aside>
 
+    <!-- Main Content -->
     <div class="flex-1 flex flex-col h-screen overflow-hidden bg-black relative">
         <div class="absolute top-0 left-0 w-full h-96 bg-brand-600/10 blur-[100px] pointer-events-none"></div>
 
@@ -142,85 +129,69 @@
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
 
-            <div class="hidden md:flex items-center gap-3 bg-dark-800/50 border border-dark-700 rounded-full px-4 py-2 w-96 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-500 transition-all">
+            <div class="hidden md:flex items-center gap-3 bg-dark-800/50 border border-dark-700 rounded-full px-4 py-2 w-96 focus-within:border-brand-500 transition-all">
                 <i data-lucide="search" class="w-4 h-4 text-gray-500"></i>
-                <input type="text" placeholder="Search articles, analytics, or tags..." class="bg-transparent border-none outline-none text-sm text-white w-full placeholder-gray-500">
+                <input type="text" placeholder="Search articles, analytics, or tags..." class="bg-transparent outline-none text-sm text-white w-full placeholder-gray-500">
             </div>
 
             <div class="flex items-center gap-4">
-                <button class="relative p-2 text-gray-400 hover:text-white transition-colors">
+                <button class="relative p-2 text-gray-400 hover:text-white">
                     <i data-lucide="bell" class="w-5 h-5"></i>
-                    <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                    <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
                 </button>
-                <button onclick="openModal()" class="hidden sm:flex items-center gap-2 bg-white text-black px-5 py-2.5 rounded-full text-sm font-bold hover:bg-gray-200 transition-transform transform hover:scale-105 shadow-lg shadow-white/10">
+                <button onclick="openModal()" class="hidden sm:flex items-center gap-2 bg-white text-black px-5 py-2.5 rounded-full text-sm font-bold hover:bg-gray-200 transition-transform hover:scale-105 shadow-lg">
                     <i data-lucide="plus-circle" class="w-4 h-4"></i>
                     New Article
                 </button>
             </div>
         </header>
 
-        <main class="flex-1 overflow-y-auto p-6 lg:p-10 z-0">
-            
+        <main class="flex-1 overflow-y-auto p-6 lg:p-10">
+            <!-- Dashboard View -->
             <div id="dashboard-view" class="animate-fade-in space-y-8">
                 <div class="flex items-end justify-between">
                     <div>
                         <h2 class="text-3xl font-bold text-white mb-2">Dashboard Overview</h2>
                         <p class="text-gray-400">Welcome back, here's what's happening in the newsroom.</p>
                     </div>
-                    <div class="flex gap-2">
-                        <select class="bg-dark-800 border border-dark-700 text-sm rounded-lg px-3 py-2 outline-none">
-                            <option>Last 7 Days</option>
-                            <option>Last 30 Days</option>
-                        </select>
-                    </div>
+                    <select class="bg-dark-800 border border-dark-700 text-sm rounded-lg px-3 py-2 outline-none text-white">
+                        <option>Last 7 Days</option>
+                        <option>Last 30 Days</option>
+                    </select>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="glass-panel p-6 rounded-2xl hover:border-brand-500/30 transition-colors">
+                    <div class="glass-panel p-6 rounded-2xl">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-3 bg-brand-500/10 rounded-xl text-brand-500">
-                                <i data-lucide="eye" class="w-6 h-6"></i>
-                            </div>
-                            <span class="flex items-center gap-1 text-xs font-medium text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded-full">
-                                +12.5% <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                            </span>
+                            <div class="p-3 bg-brand-500/10 rounded-xl text-brand-500"><i data-lucide="eye" class="w-6 h-6"></i></div>
+                            <span class="flex items-center gap-1 text-xs font-medium text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded-full">+12.5% <i data-lucide="arrow-up-right" class="w-3 h-3"></i></span>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-1">10</h3>
                         <p class="text-sm text-gray-500">Total Page Views</p>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-2xl hover:border-brand-500/30 transition-colors">
+                    <div class="glass-panel p-6 rounded-2xl">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-3 bg-blue-500/10 rounded-xl text-blue-500">
-                                <i data-lucide="users" class="w-6 h-6"></i>
-                            </div>
-                            <span class="flex items-center gap-1 text-xs font-medium text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded-full">
-                                +8.2% <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                            </span>
+                            <div class="p-3 bg-blue-500/10 rounded-xl text-blue-500"><i data-lucide="users" class="w-6 h-6"></i></div>
+                            <span class="flex items-center gap-1 text-xs font-medium text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded-full">+8.2% <i data-lucide="arrow-up-right" class="w-3 h-3"></i></span>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-1">0</h3>
                         <p class="text-sm text-gray-500">Active Subscribers</p>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-2xl hover:border-brand-500/30 transition-colors">
+                    <div class="glass-panel p-6 rounded-2xl">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-3 bg-purple-500/10 rounded-xl text-purple-500">
-                                <i data-lucide="file-text" class="w-6 h-6"></i>
-                            </div>
+                            <div class="p-3 bg-purple-500/10 rounded-xl text-purple-500"><i data-lucide="file-text" class="w-6 h-6"></i></div>
                             <span class="text-xs font-medium text-gray-400 px-2 py-1">All Time</span>
                         </div>
                         <h3 id="total-posts-count" class="text-2xl font-bold text-white mb-1">0</h3>
                         <p class="text-sm text-gray-500">Articles Published</p>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-2xl hover:border-brand-500/30 transition-colors">
+                    <div class="glass-panel p-6 rounded-2xl">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-3 bg-orange-500/10 rounded-xl text-orange-500">
-                                <i data-lucide="zap" class="w-6 h-6"></i>
-                            </div>
-                            <span class="flex items-center gap-1 text-xs font-medium text-red-400 bg-red-400/10 px-2 py-1 rounded-full">
-                                -2.4% <i data-lucide="arrow-down-right" class="w-3 h-3"></i>
-                            </span>
+                            <div class="p-3 bg-orange-500/10 rounded-xl text-orange-500"><i data-lucide="zap" class="w-6 h-6"></i></div>
+                            <span class="flex items-center gap-1 text-xs font-medium text-red-400 bg-red-400/10 px-2 py-1 rounded-full">-2.4% <i data-lucide="arrow-down-right" class="w-3 h-3"></i></span>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-1">1m 42s</h3>
                         <p class="text-sm text-gray-500">Avg. Read Time</p>
@@ -229,24 +200,23 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div class="lg:col-span-2 glass-panel p-6 rounded-2xl">
-                        <h3 class="text-lg font-bold mb-6">Traffic Overview</h3>
-                        <div id="trafficChart"></div>
+                        <h3 class="text-lg font-bold mb-6 text-white">Traffic Overview</h3>
+                        <div id="trafficChart" class="h-80"></div>
                     </div>
-                    <div class="glass-panel p-6 rounded-2xl flex flex-col">
-                        <h3 class="text-lg font-bold mb-2">Category Distribution</h3>
-                        <div class="flex-1 flex items-center justify-center">
-                            <div id="categoryChart" class="w-full"></div>
-                        </div>
+                    <div class="glass-panel p-6 rounded-2xl">
+                        <h3 class="text-lg font-bold mb-6 text-white">Category Distribution</h3>
+                        <div id="categoryChart" class="h-80"></div>
                     </div>
                 </div>
             </div>
 
+            <!-- Posts View -->
             <div id="posts-view" class="hidden animate-fade-in">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-                    <h2 class="text-3xl font-bold">Manage Articles</h2>
+                    <h2 class="text-3xl font-bold text-white">Manage Articles</h2>
                     <div class="flex gap-3">
-                        <button class="px-4 py-2 bg-dark-800 border border-dark-700 rounded-lg text-sm hover:bg-dark-700">Filter</button>
-                        <button onclick="openModal()" class="px-5 py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-lg text-sm font-semibold shadow-lg shadow-brand-500/20 transition-all">
+                        <button class="px-4 py-2 bg-dark-800 border border-dark-700 rounded-lg text-sm hover:bg-dark-700 text-white">Filter</button>
+                        <button onclick="openModal()" class="px-5 py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-lg text-sm font-semibold shadow-lg transition-all">
                             + Add New
                         </button>
                     </div>
@@ -264,8 +234,7 @@
                                     <th class="px-6 py-4 text-right">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody id="posts-table-body" class="divide-y divide-dark-700/50">
-                                </tbody>
+                            <tbody id="posts-table-body" class="divide-y divide-dark-700/50"></tbody>
                         </table>
                     </div>
                 </div>
@@ -273,309 +242,928 @@
         </main>
     </div>
 
-    <div id="modal" class="fixed inset-0 z-[60] hidden">
+    <!-- Modal -->
+    <!-- <div id="modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl">
-            <div class="glass-panel bg-[#121214] rounded-2xl shadow-2xl border border-dark-700 overflow-hidden transform scale-100 transition-all">
+        <div class="relative w-full max-w-2xl mx-4">
+            <div class="glass-panel rounded-2xl shadow-2xl border border-dark-700 overflow-hidden">
                 <div class="p-6 border-b border-dark-700 flex justify-between items-center">
                     <h3 id="modal-title" class="text-xl font-bold text-white">Write New Article</h3>
                     <button onclick="closeModal()" class="text-gray-400 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
                 </div>
                 <div class="p-6 space-y-5">
                     <input type="hidden" id="post-id">
-                    
+
                     <div>
                         <label class="block text-xs font-semibold text-gray-500 uppercase mb-2">Headline</label>
-                        <input type="text" id="post-title" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-all placeholder-gray-600" placeholder="e.g. Space X Launches New Rocket">
+                        <input type="text" id="post-title" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none transition-all placeholder-gray-600" placeholder="e.g. SpaceX Launches New Rocket">
                     </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-500 uppercase mb-2">Category</label>
-                            <select id="post-category" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none appearance-none">
-    <option value="Home">Home</option>
-    <option value="Pakistan">Pakistan</option>
-    <option value="Latest News">Latest News</option>
-    <option value="Money">Money</option>
-    <option value="Sports">Sports</option>
-    <option value="Lifestyle">Lifestyle</option>
-    <option value="Tech">Tech</option>
-    <option value="Global">Global</option>
-    <option value="Health">Health</option>
-    <option value="Weird">Weird</option>
-    <option value="TV-Programs">TV-Programs</option>
-    <option value="Opinions">Opinions</option>
-    <option value="Web Stories">Web Stories</option>
-</select>
 
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-500 uppercase mb-2">Main Category</label>
+                            <select id="post-main-category" onchange="updateSubcategories()" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none">
+                                <option value="">Select Main Category</option>
+                                <option value="Home">Home</option>
+                                <option value="Pakistan">Pakistan</option>
+                                <option value="Latest News">Latest News</option>
+                                <option value="Money">Money</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Lifestyle">Lifestyle</option>
+                                <option value="Tech">Tech</option>
+                                <option value="Global">Global</option>
+                                <option value="Health">Health</option>
+                                <option value="Weird">Weird</option>
+                                <option value="TV-Programs">TV-Programs</option>
+                                <option value="Opinions">Opinions</option>
+                                <option value="Web Stories">Web Stories</option>
+                            </select>
                         </div>
                         <div>
+                            <label class="block text-xs font-semibold text-gray-500 uppercase mb-2">Subcategory (Optional)</label>
+                            <select id="post-subcategory" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none">
+                                <option value="">No Subcategory</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="col-span-2 md:col-span-1">
                             <label class="block text-xs font-semibold text-gray-500 uppercase mb-2">Status</label>
-                            <select id="post-status" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none appearance-none">
+                            <select id="post-status" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none">
                                 <option value="published">Published</option>
                                 <option value="draft">Draft</option>
                             </select>
                         </div>
                     </div>
 
-                 <div>
-    <label class="block text-xs font-semibold text-gray-500 uppercase mb-2">Image</label>
-    <div class="flex gap-4">
-        <!-- URL Input -->
-        <input type="text" id="post-image-url" placeholder="https://..." class="flex-1 bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none transition-all placeholder-gray-600" onchange="previewImage(this.value)">
-        <!-- File Input -->
-        <input type="file" id="post-image-file" class="bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white cursor-pointer" accept="image/*" onchange="uploadImage(this)">
-        <!-- Preview Box -->
-        <div id="img-preview" class="w-24 h-24 rounded-lg bg-dark-800 border border-dark-700 bg-cover bg-center"></div>
-    </div>
-</div>
-
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase mb-2">Image</label>
+                        <div class="flex items-center gap-4">
+                            <input type="file" id="post-image-file" accept="image/*" class="bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white cursor-pointer">
+                            <div id="img-preview" class="w-32 h-32 rounded-lg bg-dark-800 border border-dashed border-dark-700 bg-cover bg-center bg-no-repeat flex items-center justify-center"></div>
+                        </div>
+                        <input type="hidden" id="post-image-url">
+                    </div>
 
                     <div>
                         <label class="block text-xs font-semibold text-gray-500 uppercase mb-2">Content</label>
-                        <textarea id="post-desc" rows="4" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none transition-all placeholder-gray-600" placeholder="Write your story here..."></textarea>
+                        <textarea id="post-desc" rows="6" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none resize-none placeholder-gray-600" placeholder="Write your story here..."></textarea>
                     </div>
 
                     <div class="pt-4">
-                        <button onclick="savePost()" class="w-full py-3.5 bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-600 text-white rounded-xl font-bold shadow-lg shadow-brand-500/25 transition-all transform hover:scale-[1.01]">
+                        <button type="button" onclick="savePost()" class="w-full py-3.5 bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-600 text-white rounded-xl font-bold shadow-lg transition-all transform hover:scale-[1.02]">
                             Save Article
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+<div id="modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
+    <div class="relative w-full max-w-4xl mx-4 h-[90vh] flex flex-col">
+        <div class="glass-panel rounded-2xl shadow-2xl border border-dark-700 overflow-hidden flex flex-col h-full">
+            <div class="p-6 border-b border-dark-700 flex justify-between items-center">
+                <h3 id="modal-title" class="text-xl font-bold text-white">Write New Article</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-6 space-y-6">
+                <input type="hidden" id="post-id">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-2">Headline</label>
+                    <input type="text" id="post-title" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none" placeholder="e.g. Pakistan Beats India in Thrilling Match">
+                </div>
+                <!-- Headline ke baad yeh add karo -->
+<div>
+    <label class="block text-xs font-semibold text-gray-500 uppercase mb-2">Short Description (Home Page Preview)</label>
+    <textarea id="post-short-desc" rows="2" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none resize-none placeholder-gray-600" 
+              placeholder="Short summary for home page cards (max 200 chars)..."></textarea>
+</div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase mb-2">Main Category</label>
+                        <select id="post-main-category" onchange="updateSubcategories()" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none">
+                            <option value="">Select Main Category</option>
+                            <option value="Home">Home</option>
+                            <option value="Pakistan">Pakistan</option>
+                            <option value="Latest News">Latest News</option>
+                            <option value="Money">Money</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Lifestyle">Lifestyle</option>
+                            <option value="Tech">Tech</option>
+                            <option value="Global">Global</option>
+                            <option value="Health">Health</option>
+                            <option value="Weird">Weird</option>
+                            <option value="TV-Programs">TV-Programs</option>
+                            <option value="Opinions">Opinions</option>
+                            <option value="Web Stories">Web Stories</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase mb-2">Subcategory (Optional)</label>
+                        <select id="post-subcategory" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none">
+                            <option value="">No Subcategory</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase mb-2">Status</label>
+                        <select id="post-status" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none">
+                            <option value="published">Published</option>
+                            <option value="draft">Draft</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-2">Image</label>
+                    <div class="flex items-center gap-4">
+                        <input type="file" id="post-image-file" accept="image/*" class="bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white cursor-pointer">
+                        <div id="img-preview" class="w-32 h-32 rounded-lg bg-dark-800 border border-dashed border-dark-700 bg-cover bg-center bg-no-repeat flex items-center justify-center"></div>
+                    </div>
+                    <input type="hidden" id="post-image-url">
+                </div>
 
-    <script>
-        // --- 1. CONFIG & DATA ---
-        lucide.createIcons();
-
-        // Default Data
-        const initialPosts = [
-            { id: '1', title: 'AI Breakthrough in Medicine', category: 'technology', status: 'published', image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=150', desc: 'Scientists discover new protein folding AI...', date: new Date().toISOString() },
-            { id: '2', title: 'Global Markets Rally', category: 'business', status: 'published', image: 'https://images.unsplash.com/photo-1611974765270-ca1258634369?auto=format&fit=crop&w=150', desc: 'Stock markets hit record highs today...', date: new Date(Date.now() - 86400000).toISOString() },
-            { id: '3', title: 'Championship Finals Set', category: 'sports', status: 'draft', image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=150', desc: 'The teams have arrived in the city...', date: new Date(Date.now() - 172800000).toISOString() },
-        ];
-
-        let posts = JSON.parse(localStorage.getItem('news_posts')) || initialPosts;
-
-        // --- 2. CORE FUNCTIONS ---
-
-        function saveToStorage() {
-            localStorage.setItem('news_posts', JSON.stringify(posts));
-            updateDashboard();
-        }
-
-        // Navigation Logic
-        function switchView(viewId) {
-            document.querySelectorAll('#sidebar nav a').forEach(el => el.classList.remove('active', 'border-l-4'));
-            document.getElementById(`nav-${viewId}`).classList.add('active');
-            
-            if(viewId === 'dashboard') {
-                document.getElementById('dashboard-view').classList.remove('hidden');
-                document.getElementById('posts-view').classList.add('hidden');
-                renderCharts(); // Re-render charts
-            } else {
-                document.getElementById('dashboard-view').classList.add('hidden');
-                document.getElementById('posts-view').classList.remove('hidden');
-                renderPostsTable();
-            }
-            
-            // Mobile menu close
-            document.getElementById('sidebar').classList.add('-translate-x-full');
-            document.getElementById('overlay').classList.add('hidden');
-        }
-
-        // --- 3. DASHBOARD LOGIC (Charts) ---
-        
-        let trafficChartInstance = null;
-        let categoryChartInstance = null;
-
-        function renderCharts() {
-            // Update Text Stats
-            document.getElementById('total-posts-count').innerText = posts.length;
-
-            // Prepare Data
-            const catCounts = {};
-            posts.forEach(p => catCounts[p.category] = (catCounts[p.category] || 0) + 1);
-            
-            // 1. Traffic Chart (Area Spline)
-            const trafficOptions = {
-                series: [{ name: 'Page Views', data: [31, 40, 28, 51, 42, 109, 100] }, { name: 'Visitors', data: [11, 32, 45, 32, 34, 52, 41] }],
-                chart: { type: 'area', height: 300, toolbar: { show: false }, background: 'transparent', fontFamily: 'Inter' },
-                colors: ['#6366f1', '#a78bfa'],
-                fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.7, opacityTo: 0.1, stops: [0, 90, 100] } },
-                dataLabels: { enabled: false },
-                stroke: { curve: 'smooth', width: 2 },
-                xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], axisBorder: { show: false }, axisTicks: { show: false }, labels: { style: { colors: '#71717a' } } },
-                yaxis: { labels: { style: { colors: '#71717a' } } },
-                grid: { borderColor: '#27272a', strokeDashArray: 4 },
-                theme: { mode: 'dark' }
-            };
-
-            // 2. Category Chart (Donut)
-            const categoryOptions = {
-                series: Object.values(catCounts).length > 0 ? Object.values(catCounts) : [1],
-                labels: Object.keys(catCounts).length > 0 ? Object.keys(catCounts) : ['No Data'],
-                chart: { type: 'donut', height: 250, background: 'transparent', fontFamily: 'Inter' },
-                colors: ['#6366f1', '#ec4899', '#10b981', '#f59e0b', '#3b82f6'],
-                stroke: { show: false },
-                plotOptions: { pie: { donut: { size: '75%', labels: { show: true, total: { show: true, showAlways: true, label: 'Articles', color: '#fff' } } } } },
-                dataLabels: { enabled: false },
-                legend: { position: 'bottom', labels: { colors: '#a1a1aa' } }
-            };
-
-            // Render Logic
-            const trafficEl = document.querySelector("#trafficChart");
-            const catEl = document.querySelector("#categoryChart");
-            
-            trafficEl.innerHTML = ''; catEl.innerHTML = ''; // Clear prev
-
-            trafficChartInstance = new ApexCharts(trafficEl, trafficOptions);
-            trafficChartInstance.render();
-
-            categoryChartInstance = new ApexCharts(catEl, categoryOptions);
-            categoryChartInstance.render();
-        }
-
-        // --- 4. POSTS MANAGEMENT ---
-
-        function renderPostsTable() {
-            const tbody = document.getElementById('posts-table-body');
-            tbody.innerHTML = posts.map(post => `
-                <tr class="hover:bg-white/5 transition-colors group">
-                    <td class="px-6 py-4">
-                        <div class="flex items-center gap-4">
-                            <img src="${post.image}" class="w-12 h-12 rounded-lg object-cover bg-dark-800">
+                <!-- Content Type Selection -->
+                <div class="bg-dark-800/50 rounded-xl p-5 border border-dark-700">
+                    <label class="block text-xs font-semibold text-gray-400 uppercase mb-4">Content Format</label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <label class="flex items-center gap-3 cursor-pointer p-4 rounded-lg bg-dark-900/50 border border-dark-700 hover:border-brand-500 transition-all">
+                            <input type="radio" name="content-type" value="simple" class="text-brand-500 text-lg">
                             <div>
-                                <p class="font-semibold text-white group-hover:text-brand-400 transition-colors">${post.title}</p>
-                                <p class="text-xs text-gray-500 truncate w-48">${post.desc}</p>
+                                <div class="font-semibold text-white">Simple Article</div>
+                                <div class="text-sm text-gray-500">Ek hi box mein poori news likhein (purana style)</div>
                             </div>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer p-4 rounded-lg bg-dark-900/50 border border-dark-700 hover:border-brand-500 transition-all">
+                            <input type="radio" name="content-type" value="structured" checked class="text-brand-500 text-lg">
+                            <div>
+                                <div class="font-semibold text-white">Professional News Format</div>
+                                <div class="text-sm text-gray-500">Alag alag sections mein likhein (jaise badi websites)</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Structured Content Only (Simple Article option removed as per request) -->
+                <div id="structured-content" class="space-y-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <h4 class="text-lg font-bold text-white">News Sections</h4>
+                            <p class="text-sm text-gray-500">Har section mein heading already diya gaya hai – sirf content likhein. Initial load par ek section milega, + button se aur add kar sakte hain.</p>
                         </div>
-                    </td>
-                    <td class="px-6 py-4">
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-dark-800 border border-dark-700 text-gray-300 capitalize">
-                            ${post.category}
-                        </span>
-                    </td>
-                    <td class="px-6 py-4">
-                        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium ${post.status === 'published' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-yellow-500/10 text-yellow-400'}">
-                            <span class="w-1.5 h-1.5 rounded-full ${post.status === 'published' ? 'bg-emerald-400' : 'bg-yellow-400'}"></span>
-                            ${post.status}
-                        </span>
-                    </td>
-                    <td class="px-6 py-4 text-xs text-gray-500">
-                        ${new Date(post.date).toLocaleDateString()}
-                    </td>
-                    <td class="px-6 py-4 text-right">
-                        <button onclick="editPost('${post.id}')" class="text-gray-400 hover:text-white p-2"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
-                        <button onclick="deletePost('${post.id}')" class="text-gray-400 hover:text-red-400 p-2"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
-                    </td>
-                </tr>
-            `).join('');
-            lucide.createIcons();
+                        <button type="button" onclick="addSection()" class="px-4 py-2 bg-dark-800 hover:bg-dark-700 border border-dark-600 rounded-lg text-white text-sm">
+                            + Add Section
+                        </button>
+                    </div>
+                    <div id="sections-container" class="space-y-6">
+                        <!-- Initial single section on load -->
+                        <div class="section-block bg-dark-800/50 rounded-xl p-5 border border-dark-700">
+                            <input type="text" class="heading-input w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white font-semibold text-lg mb-3 focus:border-brand-500 outline-none" placeholder="Section Heading likhein (e.g. Match Summary, Key Moments, Player Reactions)" value="">
+                            <textarea class="content-textarea w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none resize-none h-40 placeholder-gray-600" placeholder="Is section ka content yahan likhein..."></textarea>
+                            <button type="button" onclick="removeSection(this)" class="mt-3 text-red-400 hover:text-red-300 text-sm">Remove Section</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6 border-t border-dark-700">
+                <button type="button" onclick="savePost()" class="w-full py-3.5 bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-600 text-white rounded-xl font-bold shadow-lg transition-all transform hover:scale-[1.02]">
+                    Save Article
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <script>
+    lucide.createIcons();
+
+    const categoriesWithSub = {
+        "Home": ["Top Story", "Featured", "Popular Stories", "Latest"],
+        "Pakistan": ["Punjab","Sindh","Azad Jammu Kashmir","Balochistan","Khyber Pakhtunkhwa","Gilgit Baltistan"],
+        "Sports": ["Cricket","Football","Tennis","Hockey","Athletics"],
+        "Money": ["Finance","Auto","Startups","Power"],
+        "Lifestyle": ["Gossip","Fashion","Movies","Music","Food","Tourism","Arts"],
+        "Tech": ["Smartphones","Gear","Internet","Science","Gaming","Artificial Intelligence"],
+        "Global": ["India","Afghanistan","Middle East","Europe","Americas"],
+        "Health": ["Disease","Physical","Mental"],
+        "Web Stories": ["Trending","Latest","Beauty","Entertainment","Tech & AI","Celeb","Games"],
+        "Opinions": ["Guest Opinions","Columns","Editorials","Letters"]
+        // Latest News, Weird, TV-Programs ke liye subcategories nahi
+    };
+
+    let posts = [];
+    let trafficChartInstance = null;
+    let categoryChartInstance = null;
+
+    function updateSubcategories() {
+        const mainCat = document.getElementById("post-main-category").value;
+        const subSelect = document.getElementById("post-subcategory");
+        
+        subSelect.innerHTML = '<option value="">No Subcategory</option>';
+        
+        if (mainCat && categoriesWithSub[mainCat]) {
+            categoriesWithSub[mainCat].forEach(sub => {
+                const opt = document.createElement("option");
+                opt.value = sub;
+                opt.textContent = sub;
+                subSelect.appendChild(opt);
+            });
+        }
+    }
+
+    async function fetchPosts() {
+        try {
+            const res = await fetch("http://localhost:5000/api/posts");
+            if (!res.ok) throw new Error("Failed to fetch");
+            posts = await res.json();
+        } catch (err) {
+            console.error("Failed to fetch posts:", err);
+            posts = [];
+        }
+        renderPostsTable();
+        renderCharts();
+    }
+
+    function switchView(viewId) {
+        document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+        document.getElementById(`nav-${viewId}`).classList.add('active');
+
+        document.getElementById('dashboard-view').classList.add('hidden');
+        document.getElementById('posts-view').classList.add('hidden');
+
+        if (viewId === 'dashboard') {
+            document.getElementById('dashboard-view').classList.remove('hidden');
+            renderCharts();
+        } else if (viewId === 'posts') {
+            document.getElementById('posts-view').classList.remove('hidden');
+            renderPostsTable();
         }
 
-        // --- 5. MODAL & CRUD ---
+        document.getElementById('sidebar').classList.add('-translate-x-full');
+        document.getElementById('overlay').classList.add('hidden');
+    }
 
-        function openModal(id = null) {
-            const modal = document.getElementById('modal');
-            modal.classList.remove('hidden');
-            
-            // Reset Form
-            document.getElementById('post-id').value = '';
-            document.getElementById('post-title').value = '';
-            document.getElementById('post-desc').value = '';
-            document.getElementById('post-image').value = '';
-            document.getElementById('img-preview').style.backgroundImage = 'none';
-            document.getElementById('modal-title').innerText = 'Write New Article';
+    function renderCharts() {
+        document.getElementById('total-posts-count').innerText = posts.length;
 
-            // If Edit
-            if(id) {
-                const post = posts.find(p => p.id === id);
-                if(post) {
-                    document.getElementById('post-id').value = post.id;
-                    document.getElementById('post-title').value = post.title;
-                    document.getElementById('post-category').value = post.category;
-                    document.getElementById('post-status').value = post.status;
-                    document.getElementById('post-desc').value = post.desc;
-                    document.getElementById('post-image').value = post.image;
-                    previewImage(post.image);
-                    document.getElementById('modal-title').innerText = 'Edit Article';
+        const catCounts = {};
+        posts.forEach(p => {
+            const cat = p.category || "Uncategorized";
+            catCounts[cat] = (catCounts[cat] || 0) + 1;
+        });
+
+        const trafficOptions = {
+            series: [
+                { name: 'Page Views', data: [31, 40, 28, 51, 42, 109, 100] },
+                { name: 'Visitors', data: [11, 32, 45, 32, 34, 52, 41] }
+            ],
+            chart: { type: 'area', height: 300, toolbar: { show: false }, background: 'transparent' },
+            colors: ['#6366f1', '#a78bfa'],
+            fill: { type: 'gradient', gradient: { opacityFrom: 0.6, opacityTo: 0.1 } },
+            stroke: { curve: 'smooth', width: 2 },
+            xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], labels: { style: { colors: '#a1a1aa' } } },
+            yaxis: { labels: { style: { colors: '#a1a1aa' } } },
+            grid: { borderColor: '#27272a' },
+            theme: { mode: 'dark' }
+        };
+
+        const categoryOptions = {
+            series: Object.values(catCounts).length ? Object.values(catCounts) : [1],
+            labels: Object.keys(catCounts).length ? Object.keys(catCounts) : ['No Data'],
+            chart: { type: 'donut', height: 300 },
+            colors: ['#6366f1', '#ec4899', '#10b981', '#f59e0b', '#3b82f6', '#8b5cf6'],
+            plotOptions: { pie: { donut: { size: '70%' } } },
+            dataLabels: { enabled: false },
+            legend: { position: 'bottom', labels: { colors: '#a1a1aa' } },
+            theme: { mode: 'dark' }
+        };
+
+        if (trafficChartInstance) trafficChartInstance.destroy();
+        if (categoryChartInstance) categoryChartInstance.destroy();
+
+        trafficChartInstance = new ApexCharts(document.querySelector("#trafficChart"), trafficOptions);
+        categoryChartInstance = new ApexCharts(document.querySelector("#categoryChart"), categoryOptions);
+
+        trafficChartInstance.render();
+        categoryChartInstance.render();
+    }
+
+    function renderPostsTable() {
+        const tbody = document.getElementById('posts-table-body');
+        if (posts.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" class="text-center py-8 text-gray-500">No articles found.</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML = posts.map(post => `
+            <tr class="hover:bg-white/5 transition-colors group">
+                <td class="px-6 py-4">
+                    <div class="flex items-center gap-4">
+                        <img src="${post.image || 'https://via.placeholder.com/48'}" class="w-12 h-12 rounded-lg object-cover">
+                        <div>
+                            <p class="font-semibold text-white">${post.title || 'Untitled'}</p>
+                            <p class="text-xs text-gray-500 truncate max-w-md">${post.desc || 'No description'}</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="px-3 py-1 rounded-full text-xs bg-dark-800 border border-dark-700 capitalize">
+                        ${post.category ? post.category.replace(" > ", " → ") : 'Uncategorized'}
+                    </span>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${post.status === 'published' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-yellow-500/10 text-yellow-400'}">
+                        <span class="w-2 h-2 rounded-full ${post.status === 'published' ? 'bg-emerald-400' : 'bg-yellow-400'}"></span>
+                        ${post.status || 'draft'}
+                    </span>
+                </td>
+                <td class="px-6 py-4 text-xs text-gray-500">
+                    ${post.date ? new Date(post.date).toLocaleDateString() : '—'}
+                </td>
+                <td class="px-6 py-4 text-right space-x-2">
+                    <button onclick="editPost('${post._id}')" class="text-gray-400 hover:text-brand-500 p-2"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                    <button onclick="deletePost('${post._id}')" class="text-gray-400 hover:text-red-400 p-2"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                </td>
+            </tr>
+        `).join('');
+        lucide.createIcons();
+    }
+
+    function openModal(id = null) {
+        document.getElementById('modal').classList.remove('hidden');
+
+        document.getElementById('post-id').value = '';
+        document.getElementById('post-title').value = '';
+        document.getElementById('post-desc').value = '';
+        document.getElementById('post-main-category').value = '';
+        document.getElementById('post-subcategory').innerHTML = '<option value="">No Subcategory</option>';
+        document.getElementById('post-status').value = 'published';
+        document.getElementById('post-image-url').value = '';
+        document.getElementById('img-preview').style.backgroundImage = '';
+        document.getElementById('img-preview').innerHTML = '';
+        document.getElementById('post-image-file').value = '';
+        document.getElementById('modal-title').innerText = 'Write New Article';
+
+        if (id) {
+            const post = posts.find(p => p._id === id);
+            if (!post) return;
+
+            document.getElementById('post-id').value = post._id;
+            document.getElementById('post-title').value = post.title || '';
+            document.getElementById('post-desc').value = post.desc || '';
+            document.getElementById('post-status').value = post.status || 'draft';
+            document.getElementById('post-image-url').value = post.image || '';
+            document.getElementById('modal-title').innerText = 'Edit Article';
+
+            if (post.image) {
+                document.getElementById('img-preview').style.backgroundImage = `url('${post.image}')`;
+            }
+
+            // Handle category & subcategory
+            let mainCat = "Home";
+            let subCat = "";
+            if (post.category) {
+                if (post.category.includes(" > ")) {
+                    [mainCat, subCat] = post.category.split(" > ");
+                } else {
+                    mainCat = post.category;
                 }
             }
+            document.getElementById('post-main-category').value = mainCat;
+            updateSubcategories();
+            if (subCat) {
+                document.getElementById('post-subcategory').value = subCat;
+            }
+        }
+    }
+
+    function closeModal() {
+        document.getElementById('modal').classList.add('hidden');
+    }
+
+    async function savePost() {
+        const id = document.getElementById("post-id").value;
+        const mainCat = document.getElementById("post-main-category").value;
+        const subCat = document.getElementById("post-subcategory").value;
+
+        if (!mainCat) {
+            alert("Please select a Main Category!");
+            return;
         }
 
-        function closeModal() {
-            document.getElementById('modal').classList.add('hidden');
+        const fullCategory = subCat ? `${mainCat} > ${subCat}` : mainCat;
+
+        const payload = {
+            title: document.getElementById("post-title").value.trim(),
+            category: fullCategory,
+            status: document.getElementById("post-status").value,
+            desc: document.getElementById("post-desc").value.trim(),
+            image: document.getElementById("post-image-url").value
+        };
+
+        if (!payload.title || !payload.desc) {
+            alert("Title and Content are required!");
+            return;
         }
 
-        function previewImage(url) {
-            const div = document.getElementById('img-preview');
-            if(url) div.style.backgroundImage = `url('${url}')`;
-            else div.style.backgroundImage = 'none';
-        }
-
-        function savePost() {
-            const id = document.getElementById('post-id').value;
-            const newPost = {
-                id: id || Date.now().toString(),
-                title: document.getElementById('post-title').value || 'Untitled',
-                category: document.getElementById('post-category').value,
-                status: document.getElementById('post-status').value,
-                desc: document.getElementById('post-desc').value || 'No description',
-                image: document.getElementById('post-image-url').value || 'https://via.placeholder.com/150',
-                date: new Date().toISOString()
-            };
-
-            if(id) {
-                const index = posts.findIndex(p => p.id === id);
-                posts[index] = { ...posts[index], ...newPost };
+        try {
+            const url = id ? `http://localhost:5000/api/posts/${id}` : "http://localhost:5000/api/posts";
+            const method = id ? "PUT" : "POST";
+            const res = await fetch(url, {
+                method,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+            if (res.ok) {
+                closeModal();
+                fetchPosts();
             } else {
-                posts.unshift(newPost);
+                alert("Failed to save article");
             }
+        } catch (err) {
+            console.error("Save error:", err);
+            alert("Network error");
+        }
+    }
 
-            saveToStorage();
-            closeModal();
-            
-            // Refresh current view
-            if(!document.getElementById('dashboard-view').classList.contains('hidden')) {
-                renderCharts();
+    function editPost(id) { openModal(id); }
+
+    async function deletePost(id) {
+        if (!confirm("Are you sure you want to delete this article?")) return;
+        try {
+            const res = await fetch(`http://localhost:5000/api/posts/${id}`, { method: "DELETE" });
+            if (res.ok) fetchPosts();
+        } catch (err) {
+            console.error("Delete error:", err);
+        }
+    }
+
+    // Image Upload
+    document.getElementById("post-image-file").addEventListener("change", async function(e) {
+        const file = e.target.files[0];
+        if (!file) {
+            document.getElementById("img-preview").style.backgroundImage = '';
+            document.getElementById("post-image-url").value = '';
+            return;
+        }
+
+        document.getElementById("img-preview").innerHTML = '<i data-lucide="loader-2" class="w-8 h-8 animate-spin text-brand-500"></i>';
+        document.getElementById("img-preview").style.backgroundImage = '';
+        lucide.createIcons();
+
+        const formData = new FormData();
+        formData.append("image", file);
+
+        try {
+            const res = await fetch("http://localhost:5000/api/upload", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await res.json();
+            document.getElementById("img-preview").innerHTML = '';
+
+            if (res.ok && data.url) {
+                document.getElementById("post-image-url").value = data.url;
+                document.getElementById("img-preview").style.backgroundImage = `url('${data.url}')`;
             } else {
-                renderPostsTable();
+                alert("Upload failed: " + (data.message || "Server error"));
+                document.getElementById("img-preview").innerHTML = '<span class="text-xs text-red-400">Upload failed</span>';
             }
+        } catch (err) {
+            console.error("Upload error:", err);
+            alert("Network error");
+            document.getElementById("img-preview").innerHTML = '<span class="text-xs text-red-400">Error</span>';
         }
+    });
 
-        function editPost(id) { openModal(id); }
+    // Mobile menu
+    document.getElementById('menu-btn').addEventListener('click', () => {
+        document.getElementById('sidebar').classList.remove('-translate-x-full');
+        document.getElementById('overlay').classList.remove('hidden');
+    });
 
-        function deletePost(id) {
-            if(confirm('Are you sure you want to delete this article?')) {
-                posts = posts.filter(p => p.id !== id);
-                saveToStorage();
-                renderPostsTable();
-                renderCharts(); // update count
-            }
-        }
+    document.getElementById('overlay').addEventListener('click', () => {
+        document.getElementById('sidebar').classList.add('-translate-x-full');
+        document.getElementById('overlay').classList.add('hidden');
+    });
 
-        function updateDashboard() {
-            // Helper to refresh global state if needed
-        }
+    // Initialize
+    fetchPosts();
 
-        // --- 6. INITIALIZATION ---
+
+    function addSection() {
+    const container = document.getElementById('sections-container');
+    const newSection = document.createElement('div');
+    newSection.className = 'section-block bg-dark-800/50 rounded-xl p-5 border border-dark-700';
+    newSection.innerHTML = `
+        <input type="text" class="heading-input w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white font-semibold text-lg mb-3 focus:border-brand-500 outline-none" placeholder="Section Heading likhein (e.g. Match Summary, Key Moments, Player Reactions)" value="">
+        <textarea class="content-textarea w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none resize-none h-40 placeholder-gray-600" placeholder="Is section ka content yahan likhein..."></textarea>
+        <button type="button" onclick="removeSection(this)" class="mt-3 text-red-400 hover:text-red-300 text-sm">Remove Section</button>
+    `;
+    container.appendChild(newSection);
+}
+
+function removeSection(button) {
+    // Minimum ek section toh rehna chahiye
+    if (document.querySelectorAll('.section-block').length > 1) {
+        button.closest('.section-block').remove();
+    } else {
+        alert('Kam se kam ek section toh rakhna padega!');
+    }
+}
+</script> -->
+<script>
+    lucide.createIcons();
+
+    const categoriesWithSub = {
+        "Home": ["Top Story", "Featured", "Popular Stories", "Latest"],
+        "Pakistan": ["Punjab","Sindh","Azad Jammu Kashmir","Balochistan","Khyber Pakhtunkhwa","Gilgit Baltistan"],
+        "Sports": ["Cricket","Football","Tennis","Hockey","Athletics"],
+        "Money": ["Finance","Auto","Startups","Power"],
+        "Lifestyle": ["Gossip","Fashion","Movies","Music","Food","Tourism","Arts"],
+        "Tech": ["Smartphones","Gear","Internet","Science","Gaming","Artificial Intelligence"],
+        "Global": ["India","Afghanistan","Middle East","Europe","Americas"],
+        "Health": ["Disease","Physical","Mental"],
+        "Web Stories": ["Trending","Latest","Beauty","Entertainment","Tech & AI","Celeb","Games"],
+        "Opinions": ["Guest Opinions","Columns","Editorials","Letters"]
+    };
+
+    let posts = [];
+    let trafficChartInstance = null;
+    let categoryChartInstance = null;
+
+    function updateSubcategories() {
+        const mainCat = document.getElementById("post-main-category").value;
+        const subSelect = document.getElementById("post-subcategory");
         
-        // Mobile Toggle
-        document.getElementById('menu-btn').addEventListener('click', () => {
-            document.getElementById('sidebar').classList.remove('-translate-x-full');
-            document.getElementById('overlay').classList.remove('hidden');
-        });
-        document.getElementById('overlay').addEventListener('click', () => {
-            document.getElementById('sidebar').classList.add('-translate-x-full');
-            document.getElementById('overlay').classList.add('hidden');
-        });
+        subSelect.innerHTML = '<option value="">No Subcategory</option>';
+        
+        if (mainCat && categoriesWithSub[mainCat]) {
+            categoriesWithSub[mainCat].forEach(sub => {
+                const opt = document.createElement("option");
+                opt.value = sub;
+                opt.textContent = sub;
+                subSelect.appendChild(opt);
+            });
+        }
+    }
 
-        // Init
+    async function fetchPosts() {
+        try {
+            const res = await fetch("http://localhost:5000/api/posts");
+            if (!res.ok) throw new Error("Failed to fetch");
+            posts = await res.json();
+        } catch (err) {
+            console.error("Failed to fetch posts:", err);
+            posts = [];
+        }
+        renderPostsTable();
         renderCharts();
+    }
 
-    </script>
+    function switchView(viewId) {
+        document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+        document.getElementById(`nav-${viewId}`).classList.add('active');
+
+        document.getElementById('dashboard-view').classList.add('hidden');
+        document.getElementById('posts-view').classList.add('hidden');
+
+        if (viewId === 'dashboard') {
+            document.getElementById('dashboard-view').classList.remove('hidden');
+            renderCharts();
+        } else if (viewId === 'posts') {
+            document.getElementById('posts-view').classList.remove('hidden');
+            renderPostsTable();
+        }
+
+        document.getElementById('sidebar').classList.add('-translate-x-full');
+        document.getElementById('overlay').classList.add('hidden');
+    }
+
+    function renderCharts() {
+        document.getElementById('total-posts-count').innerText = posts.length;
+
+        const catCounts = {};
+        posts.forEach(p => {
+            const cat = p.category || "Uncategorized";
+            catCounts[cat] = (catCounts[cat] || 0) + 1;
+        });
+
+        const trafficOptions = {
+            series: [
+                { name: 'Page Views', data: [31, 40, 28, 51, 42, 109, 100] },
+                { name: 'Visitors', data: [11, 32, 45, 32, 34, 52, 41] }
+            ],
+            chart: { type: 'area', height: 300, toolbar: { show: false }, background: 'transparent' },
+            colors: ['#6366f1', '#a78bfa'],
+            fill: { type: 'gradient', gradient: { opacityFrom: 0.6, opacityTo: 0.1 } },
+            stroke: { curve: 'smooth', width: 2 },
+            xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], labels: { style: { colors: '#a1a1aa' } } },
+            yaxis: { labels: { style: { colors: '#a1a1aa' } } },
+            grid: { borderColor: '#27272a' },
+            theme: { mode: 'dark' }
+        };
+
+        const categoryOptions = {
+            series: Object.values(catCounts).length ? Object.values(catCounts) : [1],
+            labels: Object.keys(catCounts).length ? Object.keys(catCounts) : ['No Data'],
+            chart: { type: 'donut', height: 300 },
+            colors: ['#6366f1', '#ec4899', '#10b981', '#f59e0b', '#3b82f6', '#8b5cf6'],
+            plotOptions: { pie: { donut: { size: '70%' } } },
+            dataLabels: { enabled: false },
+            legend: { position: 'bottom', labels: { colors: '#a1a1aa' } },
+            theme: { mode: 'dark' }
+        };
+
+        if (trafficChartInstance) trafficChartInstance.destroy();
+        if (categoryChartInstance) categoryChartInstance.destroy();
+
+        trafficChartInstance = new ApexCharts(document.querySelector("#trafficChart"), trafficOptions);
+        categoryChartInstance = new ApexCharts(document.querySelector("#categoryChart"), categoryOptions);
+
+        trafficChartInstance.render();
+        categoryChartInstance.render();
+    }
+
+    function renderPostsTable() {
+        const tbody = document.getElementById('posts-table-body');
+        if (posts.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" class="text-center py-8 text-gray-500">No articles found.</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML = posts.map(post => {
+            // Agar sections hain to pehla section ka content preview mein dikhao, warna desc
+            const previewText = (post.sections && post.sections[0] && post.sections[0].content) 
+                ? post.sections[0].content 
+                : (post.desc || 'No description');
+
+            return `
+            <tr class="hover:bg-white/5 transition-colors group">
+                <td class="px-6 py-4">
+                    <div class="flex items-center gap-4">
+                        <img src="${post.image || 'https://via.placeholder.com/48'}" class="w-12 h-12 rounded-lg object-cover">
+                        <div>
+                            <p class="font-semibold text-white">${post.title || 'Untitled'}</p>
+                            <p class="text-xs text-gray-500 truncate max-w-md">${previewText}</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="px-3 py-1 rounded-full text-xs bg-dark-800 border border-dark-700 capitalize">
+                        ${post.category ? post.category.replace(" > ", " → ") : 'Uncategorized'}
+                    </span>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${post.status === 'published' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-yellow-500/10 text-yellow-400'}">
+                        <span class="w-2 h-2 rounded-full ${post.status === 'published' ? 'bg-emerald-400' : 'bg-yellow-400'}"></span>
+                        ${post.status || 'draft'}
+                    </span>
+                </td>
+                <td class="px-6 py-4 text-xs text-gray-500">
+                    ${post.date ? new Date(post.date).toLocaleDateString() : '—'}
+                </td>
+                <td class="px-6 py-4 text-right space-x-2">
+                    <button onclick="editPost('${post._id}')" class="text-gray-400 hover:text-brand-500 p-2"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                    <button onclick="deletePost('${post._id}')" class="text-gray-400 hover:text-red-400 p-2"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                </td>
+            </tr>
+            `;
+        }).join('');
+        lucide.createIcons();
+    }
+
+    function openModal(id = null) {
+        document.getElementById('modal').classList.remove('hidden');
+
+        // Basic fields reset
+        document.getElementById('post-id').value = '';
+        document.getElementById('post-title').value = '';
+        document.getElementById('post-main-category').value = '';
+        document.getElementById('post-subcategory').innerHTML = '<option value="">No Subcategory</option>';
+        document.getElementById('post-status').value = 'published';
+        document.getElementById('post-image-url').value = '';
+        document.getElementById('img-preview').style.backgroundImage = '';
+        document.getElementById('img-preview').innerHTML = '';
+        document.getElementById('post-image-file').value = '';
+        document.getElementById('modal-title').innerText = 'Write New Article';
+
+        // Sections container ko ek empty section ke saath reset karo
+        const container = document.getElementById('sections-container');
+        container.innerHTML = `
+            <div class="section-block bg-dark-800/50 rounded-xl p-5 border border-dark-700">
+                <input type="text" class="heading-input w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white font-semibold text-lg mb-3 focus:border-brand-500 outline-none" placeholder="Section Heading likhein (e.g. Match Summary, Key Moments, Player Reactions)" value="">
+                <textarea class="content-textarea w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none resize-none h-40 placeholder-gray-600" placeholder="Is section ka content yahan likhein..."></textarea>
+                <button type="button" onclick="removeSection(this)" class="mt-3 text-red-400 hover:text-red-300 text-sm">Remove Section</button>
+            </div>
+        `;
+
+        if (id) {
+            const post = posts.find(p => p._id === id);
+            if (!post) return;
+
+            document.getElementById('post-id').value = post._id;
+            document.getElementById('post-title').value = post.title || '';
+            document.getElementById('post-short-desc').value = post.shortDesc || '';  // ← NEW
+
+            document.getElementById('post-status').value = post.status || 'draft';
+            document.getElementById('post-image-url').value = post.image || '';
+            document.getElementById('modal-title').innerText = 'Edit Article';
+
+            if (post.image) {
+                document.getElementById('img-preview').style.backgroundImage = `url('${post.image}')`;
+            }
+
+            // Category handling
+            let mainCat = "Home";
+            let subCat = "";
+            if (post.category) {
+                if (post.category.includes(" > ")) {
+                    [mainCat, subCat] = post.category.split(" > ");
+                } else {
+                    mainCat = post.category;
+                }
+            }
+            document.getElementById('post-main-category').value = mainCat;
+            updateSubcategories();
+            if (subCat) {
+                document.getElementById('post-subcategory').value = subCat;
+            }
+
+            // Agar sections array hai to load karo
+            if (post.sections && Array.isArray(post.sections) && post.sections.length > 0) {
+                container.innerHTML = ''; // clear initial
+                post.sections.forEach(sec => {
+                    addSection(sec.heading || '', sec.content || '');
+                });
+            }
+            // Backward compatibility: agar purana post hai aur sirf desc hai
+            else if (post.desc) {
+                const firstHeading = container.querySelector('.heading-input');
+                const firstTextarea = container.querySelector('.content-textarea');
+                if (firstHeading) firstHeading.value = "Article Body";
+                if (firstTextarea) firstTextarea.value = post.desc;
+            }
+        }
+    }
+
+    function closeModal() {
+        document.getElementById('modal').classList.add('hidden');
+    }
+
+    function addSection(heading = '', content = '') {
+        const container = document.getElementById('sections-container');
+        const newSection = document.createElement('div');
+        newSection.className = 'section-block bg-dark-800/50 rounded-xl p-5 border border-dark-700';
+        newSection.innerHTML = `
+            <input type="text" class="heading-input w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white font-semibold text-lg mb-3 focus:border-brand-500 outline-none" 
+                   placeholder="Section Heading likhein (e.g. Match Summary, Key Moments, Player Reactions)" value="${heading.replace(/"/g, '&quot;')}">
+            <textarea class="content-textarea w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 outline-none resize-none h-40 placeholder-gray-600" 
+                      placeholder="Is section ka content yahan likhein...">${content}</textarea>
+            <button type="button" onclick="removeSection(this)" class="mt-3 text-red-400 hover:text-red-300 text-sm">Remove Section</button>
+        `;
+        container.appendChild(newSection);
+    }
+
+    function removeSection(button) {
+        if (document.querySelectorAll('.section-block').length > 1) {
+            button.closest('.section-block').remove();
+        } else {
+            alert('Kam se kam ek section toh rakhna padega!');
+        }
+    }
+
+    async function savePost() {
+        const id = document.getElementById("post-id").value;
+        const mainCat = document.getElementById("post-main-category").value;
+        const subCat = document.getElementById("post-subcategory").value;
+
+        if (!mainCat) {
+            alert("Please select a Main Category!");
+            return;
+        }
+
+        const fullCategory = subCat ? `${mainCat} > ${subCat}` : mainCat;
+
+        // Sections collect karo
+        const sections = [];
+        document.querySelectorAll('.section-block').forEach(block => {
+            const heading = block.querySelector('.heading-input').value.trim();
+            const content = block.querySelector('.content-textarea').value.trim();
+            if (content) { // content ho to hi add karo
+                sections.push({
+                    heading: heading || "Untitled Section",
+                    content: content
+                });
+            }
+        });
+
+        if (sections.length === 0) {
+            alert("Kam se kam ek section mein content likhna zaroori hai!");
+            return;
+        }
+
+        const payload = {
+            title: document.getElementById("post-title").value.trim(),
+            shortDesc: document.getElementById("post-short-desc").value.trim(),  // ← NEW
+
+            category: fullCategory,
+            status: document.getElementById("post-status").value,
+            sections: sections,  // ab sections array save ho raha hai
+            image: document.getElementById("post-image-url").value
+        };
+
+        if (!payload.title) {
+            alert("Title is required!");
+            return;
+        }
+
+        try {
+            const url = id ? `http://localhost:5000/api/posts/${id}` : "http://localhost:5000/api/posts";
+            const method = id ? "PUT" : "POST";
+            const res = await fetch(url, {
+                method,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+            if (res.ok) {
+                closeModal();
+                fetchPosts();
+            } else {
+                alert("Failed to save article");
+            }
+        } catch (err) {
+            console.error("Save error:", err);
+            alert("Network error");
+        }
+    }
+
+    function editPost(id) { openModal(id); }
+
+    async function deletePost(id) {
+        if (!confirm("Are you sure you want to delete this article?")) return;
+        try {
+            const res = await fetch(`http://localhost:5000/api/posts/${id}`, { method: "DELETE" });
+            if (res.ok) fetchPosts();
+        } catch (err) {
+            console.error("Delete error:", err);
+        }
+    }
+
+    // Image Upload
+    document.getElementById("post-image-file").addEventListener("change", async function(e) {
+        const file = e.target.files[0];
+        if (!file) {
+            document.getElementById("img-preview").style.backgroundImage = '';
+            document.getElementById("post-image-url").value = '';
+            return;
+        }
+
+        document.getElementById("img-preview").innerHTML = '<i data-lucide="loader-2" class="w-8 h-8 animate-spin text-brand-500"></i>';
+        document.getElementById("img-preview").style.backgroundImage = '';
+        lucide.createIcons();
+
+        const formData = new FormData();
+        formData.append("image", file);
+
+        try {
+            const res = await fetch("http://localhost:5000/api/upload", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await res.json();
+            document.getElementById("img-preview").innerHTML = '';
+
+            if (res.ok && data.url) {
+                document.getElementById("post-image-url").value = data.url;
+                document.getElementById("img-preview").style.backgroundImage = `url('${data.url}')`;
+            } else {
+                alert("Upload failed: " + (data.message || "Server error"));
+                document.getElementById("img-preview").innerHTML = '<span class="text-xs text-red-400">Upload failed</span>';
+            }
+        } catch (err) {
+            console.error("Upload error:", err);
+            alert("Network error");
+            document.getElementById("img-preview").innerHTML = '<span class="text-xs text-red-400">Error</span>';
+        }
+    });
+
+    // Mobile menu
+    document.getElementById('menu-btn').addEventListener('click', () => {
+        document.getElementById('sidebar').classList.remove('-translate-x-full');
+        document.getElementById('overlay').classList.remove('hidden');
+    });
+
+    document.getElementById('overlay').addEventListener('click', () => {
+        document.getElementById('sidebar').classList.add('-translate-x-full');
+        document.getElementById('overlay').classList.add('hidden');
+    });
+
+    // Initialize
+    fetchPosts();
+</script>
 </body>
 </html>

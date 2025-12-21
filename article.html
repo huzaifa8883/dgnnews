@@ -3,131 +3,161 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dgnnews TV - Lifestyle</title>
+  <title id="page-title">Loading... | Dgnnews TV</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Georgia,serif&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --samaa-red: #d32f2f;
+      --samaa-red: #c8102e;
       --samaa-navy: #0d1b2a;
-      --primary: #d32f2f;
+      --primary: #c8102e;
     }
-    body { font-family: 'Helvetica Neue', Arial, sans-serif; }
-    .bg-background { background-color: #ffffff; }
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #ffffff;
+      color: #333333;
+      line-height: 1.8;
+    }
+    .article-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      line-height: 1.15;
+      font-weight: 700;
+      color: #000000;
+    }
+    @media (min-width: 768px) {
+      .article-title { font-size: 4.5rem; }
+    }
+    .category-badge {
+      background-color: var(--samaa-red);
+      color: white;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 0;
+      letter-spacing: 1px;
+    }
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #000000;
+      margin: 4rem 0 2rem;
+      border-bottom: 4px solid var(--samaa-red);
+      padding-bottom: 0.8rem;
+      display: inline-block;
+    }
+    .article-content {
+      font-size: 1.25rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .article-content p {
+      margin-bottom: 2rem;
+      text-align: justify;
+    }
+    .main-image {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .timestamp {
+      font-size: 1.1rem;
+      color: #555555;
+      font-weight: 600;
+    }
+    .sidebar-card {
+      border: 1px solid #eee;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .sidebar-card:hover {
+      border-color: var(--samaa-red);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transform: translateY(-4px);
+    }
+    .loader {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid var(--samaa-red);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      margin: 150px auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .nav-link {
+      font-weight: 700;
+      color: #000000;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+    .nav-link:hover {
+      color: var(--samaa-red);
+    }
+   .bg-background { background-color: #ffffff; }
     .text-foreground { color: #1b263b; }
     .text-muted-foreground { color: #778da9; }
     .text-primary { color: var(--primary); }
+    .border-border { border-color: #e0e1dd; }
+    .bg-muted { background-color: #f0f0f0; }
 
     .top-story-badge {
-      background-color: var(--primary);
+      background-color: var(--samaa-red);
       color: white;
       padding: 0.5rem 1rem;
-      font-weight: 700;
+      font-weight: bold;
       font-size: 0.875rem;
       border-radius: 0.25rem;
     }
-
-    .category-header {
-      background-color: var(--primary);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      font-size: 1.25rem;
-      font-weight: 700;
-      border-radius: 0.5rem;
-      display: inline-block;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    .section-title, .popular-stories-title, .featured-title {
-      font-weight: 800;
-      font-size: 1.75rem;
+    .popular-stories-title,
+    .featured-title,
+    .section-title {
+      font-weight: bold;
+      font-size: 1.5rem;
       color: var(--samaa-navy);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       position: relative;
       display: inline-block;
     }
-    .section-title::after, .popular-stories-title::after, .featured-title::after {
+    .popular-stories-title::after,
+    .featured-title::after,
+    .section-title::after {
       content: '';
       position: absolute;
-      bottom: -0.75rem;
+      bottom: -0.5rem;
       left: 0;
-      width: 70%;
-      height: 5px;
-      background-color: var(--primary);
+      width: 60%;
+      height: 4px;
+      background-color: var(--samaa-red);
     }
-
     .category-badge {
-      background-color: var(--primary);
+      background-color: var(--samaa-red);
       color: white;
-      padding: 0.3rem 0.6rem;
-      font-size: 0.8rem;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
       font-weight: bold;
-      border-radius: 0.3rem;
+      border-radius: 0.25rem;
       display: inline-block;
     }
-
-    .timestamp { font-size: 0.8rem; color: #666; }
-
-    /* Button Styles */
-    .sub-btn {
-      padding: 0.7rem 1.6rem;
-      font-size: 1rem;
-      font-weight: 600;
-      border-radius: 9999px;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      cursor: pointer;
+    .news-title { font-size: 1rem; }
+    .timestamp {
+      font-size: 0.75rem;
+      color: #999;
     }
-    .sub-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    .news-separator {
+      border-bottom: 1px solid #eee;
     }
-    .sub-btn.active {
-      background-color: var(--primary) !important;
-      color: white !important;
-      box-shadow: 0 6px 20px rgba(211, 47, 47, 0.5);
-      transform: scale(1.08);
-      font-weight: 700;
+    .watch-live {
+      color: var(--samaa-red);
+      font-weight: bold;
+      font-size: 0.875rem;
     }
-
-    /* News Cards */
-    .news-card, .featured-card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    .news-card:hover, .featured-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-    }
-    .news-card img, .featured-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-        /* News Cards */
-    .news-card, .featured-card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    .news-card:hover, .featured-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-    }
-    .news-card img, .featured-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-       .urdu-text { font-family: 'Noto Nastaliq Urdu', serif; }
+    .urdu-text { font-family: 'Noto Nastaliq Urdu', serif; }
     .headlines-box {
       background-color: var(--samaa-red);
       color: white;
@@ -158,7 +188,7 @@
     }
     .nav-link:hover {
       color: var(--samaa-red);
-    }
+    } 
     .dgn-logo-box {
   background: #111;
   color: white;
@@ -174,9 +204,10 @@
   padding: 4px 8px;
   margin-left: 6px;
 }
+
   </style>
 </head>
-<body class="bg-gray-50">
+<body>
 
   <!-- Header -->
  <header class="bg-background border-b border-border">
@@ -287,72 +318,79 @@
     </div>
   </nav>
 </header>
-  <!-- Main Content -->
-  <main class="container mx-auto px-4 py-10">
-    <!-- Subcategory Buttons -->
-    <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-10">
-      <button class="sub-btn bg-gray-200 text-gray-800 active" data-sub="">All Lifestyle</button>
-      <button class="sub-btn bg-gray-200 text-gray-800" data-sub="gossip">Gossip</button>
-      <button class="sub-btn bg-gray-200 text-gray-800" data-sub="fashion">Fashion</button>
-      <button class="sub-btn bg-gray-200 text-gray-800" data-sub="movies">Movies</button>
-      <button class="sub-btn bg-gray-200 text-gray-800" data-sub="music">Music</button>
-      <button class="sub-btn bg-gray-200 text-gray-800" data-sub="food">Food</button>
-      <button class="sub-btn bg-gray-200 text-gray-800" data-sub="tourism">Tourism</button>
-      <button class="sub-btn bg-gray-200 text-gray-800" data-sub="arts">Arts</button>
-    </div>
 
-    <!-- Category Header -->
-    <div class="text-center mb-6">
-      <span id="categoryHeader" class="category-header">Lifestyle News</span>
-    </div>
+  <!-- Main Layout with Sidebars -->
+  <div class="container mx-auto px-4 py-12">
+    <div id="loader" class="loader"></div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <!-- Left + Center -->
-      <div class="lg:col-span-2 space-y-16">
-        <!-- Top Story -->
-        <div class="top-story bg-white rounded-xl overflow-hidden shadow-lg cursor-pointer">
-          <div class="relative">
-            <span class="top-story-badge absolute top-4 left-4 z-10">Top Story</span>
-            <img src="" alt="Top Story" class="w-full h-64 md:h-96 object-cover top-story-image transition-transform duration-500 hover:scale-105">
-          </div>
-          <div class="p-6 md:p-8">
-            <h1 class="text-3xl md:text-4xl font-bold leading-tight mb-4 hover:text-red-600 transition-colors top-story-title"></h1>
-            <p class="text-gray-700 text-lg leading-relaxed top-story-desc"></p>
-          </div>
+    <div id="article-content" class="hidden grid grid-cols-1 lg:grid-cols-4 gap-10">
+      <!-- Left Sidebar: Featured News -->
+      <aside class="hidden lg:block space-y-8">
+        <h2 class="text-3xl font-bold mb-8 border-b-4 border-primary pb-3 inline-block">Featured News</h2>
+        <div id="featured-sidebar" class="space-y-6">
+          <!-- Featured cards loaded here -->
         </div>
+      </aside>
 
-        <!-- Popular Stories -->
-        <div>
-          <h3 class="popular-stories-title">POPULAR STORIES</h3>
-          <div class="popular-posts grid grid-cols-1 md:grid-cols-2 gap-6"></div>
-        </div>
-
-        <!-- Latest News -->
-        <!-- <div>
-          <h2 class="section-title">LATEST</h2>
-          <div class="latest-posts space-y-6"></div>
-        </div> -->
-      </div>
-
-      <!-- Sidebar -->
-      <aside class="lg:col-span-1 space-y-8">
-        <!-- Watch Live -->
-        <div class="bg-white rounded-xl overflow-hidden shadow-lg p-4">
-          <h3 class="text-center font-bold text-lg mb-4" style="color: var(--samaa-navy);">WATCH Dgnnews TV LIVE</h3>
-          <div class="relative bg-black aspect-video">
-            <iframe src="https://www.youtube.com/embed/live_stream?channel=UCJekTugpd8xOPNHyY0yYDzg" class="w-full h-full" allowfullscreen></iframe>
+      <!-- Center: Main Article -->
+      <main class="lg:col-span-2">
+        <article>
+          <div class="text-center mb-12">
+            <span id="article-category" class="category-badge inline-block mb-6"></span>
+            <h1 id="article-title" class="article-title mb-8"></h1>
+            <p id="article-date" class="timestamp"></p>
           </div>
-        </div>
 
-        <!-- Featured -->
-        <div>
-          <h3 class="featured-title">FEATURED</h3>
-          <div class="featured-posts space-y-6"></div>
+          <!-- Short Description -->
+          <div id="short-desc-container" class="mb-12"></div>
+
+          <!-- Main Image -->
+          <div class="main-image mb-12">
+            <img id="article-image" src="" alt="" class="w-full object-cover h-auto max-h-[700px]">
+          </div>
+
+          <!-- Detailed Content -->
+          <div class="article-content">
+            <div id="sections-container" class="space-y-12"></div>
+
+            <!-- Share Section -->
+            <div class="share-section text-center my-16 py-8 border-y-2 border-gray-200">
+              <span class="text-xl font-bold mr-8">Share this article:</span>
+              <div class="inline-flex gap-5">
+                <div class="share-btn"><i class="fab fa-facebook-f"></i></div>
+                <div class="share-btn"><i class="fab fa-twitter"></i></div>
+                <div class="share-btn"><i class="fab fa-whatsapp"></i></div>
+                <div class="share-btn"><i class="fas fa-link"></i></div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </main>
+
+      <!-- Right Sidebar: Related Articles -->
+      <aside class="space-y-8">
+        <h2 class="text-3xl font-bold mb-8 border-b-4 border-primary pb-3 inline-block">Related Articles</h2>
+        <div id="related-sidebar" class="space-y-6">
+          <!-- Related cards loaded here -->
         </div>
       </aside>
     </div>
-  </main>
 
+    <!-- Mobile Only: Related + Featured Below Article -->
+    <div id="mobile-below" class="hidden lg:hidden mt-20 space-y-16">
+      <section>
+        <h2 class="text-3xl font-bold mb-8 text-center border-b-4 border-primary pb-3 inline-block">Related Articles</h2>
+        <div id="related-mobile" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+      </section>
+
+      <section>
+        <h2 class="text-3xl font-bold mb-8 text-center border-b-4 border-primary pb-3 inline-block">Featured News</h2>
+        <div id="featured-mobile" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Footer -->
 <footer class="bg-[#0f172a] text-slate-300 mt-16 border-t-4 border-red-600">
   <div class="container mx-auto px-6 py-16">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -431,119 +469,131 @@
     </div>
   </div>
 </footer>
+
   <script>
-  // Category names mapping for Lifestyle subcategories
-  const categoryNames = {
-    '': 'Lifestyle News',
-    'gossip': 'Gossip',
-    'fashion': 'Fashion',
-    'movies': 'Movies',
-    'music': 'Music',
-    'food': 'Food',
-    'tourism': 'Tourism',
-    'arts': 'Arts'
-  };
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
+    let allPosts = [];
+    let currentPost = null;
 
-  async function loadPosts(subcategory = '') {
-    try {
-      const url = `http://localhost:5000/api/posts/lifestyle${subcategory ? `?subcategory=${subcategory}` : ''}`;
-      const res = await fetch(url);
-      if (!res.ok) {
-        console.error("Fetch failed:", res.status, await res.text());
-        throw new Error("Failed to fetch data");
-      }
+    async function loadArticle() {
+        if (!postId) return showError("No article ID found");
 
-      const data = await res.json();
-      console.log("Fetched data:", data);
+        try {
+            // Load current article
+            const res = await fetch(`http://localhost:5000/api/posts/${postId}`);
+            if (!res.ok) throw new Error("Article not found");
+            currentPost = await res.json();
 
-      const { topStory, featuredPosts = [], popularPosts = [], latestPosts = [] } = data;
+            // Load all posts for sidebars
+            const allRes = await fetch("http://localhost:5000/api/posts");
+            allPosts = await allRes.json();
 
-      // Update category header
-      document.getElementById("categoryHeader").innerText = categoryNames[subcategory] || 'Lifestyle News';
+            // Populate main article
+            document.getElementById('page-title').innerText = `${currentPost.title} | SAMAA TV`;
+            document.getElementById('article-title').innerText = currentPost.title;
 
-      // Top Story
-      if (topStory) {
-        document.querySelector(".top-story-image").src = topStory.image || 'https://via.placeholder.com/1200x600';
-        document.querySelector(".top-story-title").innerText = topStory.title || 'Untitled';
-        const preview = topStory.shortDesc || (topStory.sections?.[0]?.content) || topStory.desc || 'No description available';
-        document.querySelector(".top-story-desc").innerText = preview.substring(0, 250) + (preview.length > 250 ? '...' : '');
+            const catText = currentPost.category ? currentPost.category.replace(" > ", " → ").toUpperCase() : "NEWS";
+            document.getElementById('article-category').innerText = catText;
 
-        document.querySelector(".top-story").onclick = () => {
-          window.location.href = `article.html?id=${topStory._id}`;
-        };
-      } else {
-        document.querySelector(".top-story-desc").innerText = "No top story available";
-      }
+            // const date = new Date(currentPost.createdAt);
+            // document.getElementById('article-date').innerText = date.toLocaleDateString('en-US', {
+            //     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+            // }) + ' — ' + date.toLocaleTimeString([], { hour: 'numeric', minute: 'numeric' });
 
-      // Featured
-      const featuredContainer = document.querySelector(".featured-posts");
-      featuredContainer.innerHTML = featuredPosts.length === 0 ? '<p class="text-center text-gray-600 py-4">No featured posts available</p>' : '';
-      featuredPosts.forEach(post => {
-        const el = document.createElement("div");
-        el.className = "featured-card cursor-pointer";
-        el.onclick = () => window.location.href = `article.html?id=${post._id}`;
-        const preview = post.shortDesc || (post.sections?.[0]?.content) || post.desc || '';
-        el.innerHTML = `
-          <img src="${post.image || 'https://via.placeholder.com/400x300'}" alt="${post.title}">
-          <div class="p-5">
-            <span class="category-badge mb-3 inline-block">Featured</span>
-            <h4 class="text-xl font-bold mb-3 hover:text-red-600">${post.title}</h4>
-            <p class="text-gray-600 text-sm line-clamp-3 mb-3">${preview.substring(0, 150) + (preview.length > 150 ? '...' : '')}</p>
-            <span class="timestamp">${new Date(post.createdAt).toLocaleString('default', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
-          </div>
-        `;
-        featuredContainer.appendChild(el);
-      });
+            document.getElementById('article-image').src = currentPost.image || 'https://via.placeholder.com/1400x800?text=No+Image';
 
-      // Popular
-      const popularContainer = document.querySelector(".popular-posts");
-      popularContainer.innerHTML = popularPosts.length === 0 ? '<p class="text-center text-gray-600 py-4">No popular posts available</p>' : '';
-      popularPosts.forEach(post => {
-        const el = document.createElement("div");
-        el.className = "news-card cursor-pointer";
-        el.onclick = () => window.location.href = `article.html?id=${post._id}`;
-        const preview = post.shortDesc || (post.sections?.[0]?.content) || post.desc || '';
-        el.innerHTML = `
-          <img src="${post.image || 'https://via.placeholder.com/600x400'}" alt="${post.title}">
-          <div class="p-5">
-            <span class="category-badge mb-3 inline-block">Popular</span>
-            <h4 class="font-bold text-lg mb-3 hover:text-red-600">${post.title}</h4>
-            <p class="text-gray-600 text-sm line-clamp-3 mb-3">${preview.substring(0, 150) + (preview.length > 150 ? '...' : '')}</p>
-            <span class="timestamp">${new Date(post.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} ago</span>
-          </div>
-        `;
-        popularContainer.appendChild(el);
-      });
+            // Short Description
+            if (currentPost.shortDesc && currentPost.shortDesc.trim()) {
+                document.getElementById('short-desc-container').innerHTML = `
+                    <div class="text-2xl leading-relaxed font-medium text-gray-800 bg-gray-50 border-l-8 border-primary pl-8 py-8 rounded-r-2xl shadow-lg my-12">
+                        ${currentPost.shortDesc.replace(/\n/g, '<br><br>')}
+                    </div>
+                `;
+            }
 
-      // Latest
-    
+            // Sections
+            const container = document.getElementById('sections-container');
+            container.innerHTML = '';
+            if (currentPost.sections && currentPost.sections.length > 0) {
+                currentPost.sections.forEach(sec => {
+                    const div = document.createElement('div');
+                    div.innerHTML = `
+                        <h2 class="section-heading">${sec.heading}</h2>
+                        <div class="text-justify text-xl leading-9 text-gray-700">${sec.content.replace(/\n/g, '<br>')}</div>
 
-    } catch (err) {
-      console.error("Error loading lifestyle news:", err);
-      document.querySelector(".top-story-desc").innerText = "Failed to load news. Check console.";
+                    `;
+                    container.appendChild(div);
+                });
+            }
+
+            // Load sidebars
+            loadSidebars();
+
+            // Show content
+            document.getElementById('loader').classList.add('hidden');
+            document.getElementById('article-content').classList.remove('hidden');
+            document.getElementById('mobile-below').classList.remove('hidden');
+
+        } catch (err) {
+            console.error(err);
+            showError("Article could not be loaded");
+        }
     }
-  }
 
-  // Initial load
-  loadPosts('');
+    function loadSidebars() {
+        const related = allPosts
+            .filter(p => p._id !== postId)
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 10);
 
-  // Button handling
-  const buttons = document.querySelectorAll('.sub-btn');
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const sub = btn.dataset.sub;
-      loadPosts(sub);
-    });
-  });
+        const featured = allPosts
+            .filter(p => p.category && p.category.includes("Featured"))
+            .slice(0, 6);
 
-  // Mobile menu
-  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-  const mobileMenu = document.getElementById("mobileMenu");
-  mobileMenuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-  });
+        // Desktop: Left = Featured, Right = Related
+        renderSidebar('#featured-sidebar', featured.length ? featured : related.slice(0, 6));
+        renderSidebar('#related-sidebar', related.slice(0, 6));
+
+        // Mobile: Below article
+        renderSidebar('#related-mobile', related.slice(0, 6), true);
+        renderSidebar('#featured-mobile', featured.length ? featured : related.slice(6, 12), true);
+    }
+
+    function renderSidebar(containerId, posts, isMobile = false) {
+        const container = document.querySelector(containerId);
+        container.innerHTML = '';
+
+        posts.forEach(post => {
+            const card = document.createElement('div');
+            card.className = 'sidebar-card bg-white overflow-hidden rounded-lg';
+            card.onclick = () => location.href = `article.html?id=${post._id}`;
+
+            const preview = post.shortDesc || (post.sections?.[0]?.content) || post.desc || '';
+
+            card.innerHTML = `
+                <img src="${post.image || 'https://via.placeholder.com/300x200'}" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <h3 class="font-bold text-lg mb-2 line-clamp-2">${post.title}</h3>
+                    ${isMobile ? `<p class="text-gray-600 text-sm line-clamp-2 mb-3">${preview.substring(0, 100)}...</p>` : ''}
+                    <span class="text-xs text-gray-500">${new Date(post.createdAt).toLocaleDateString()}</span>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function showError(msg) {
+        document.body.innerHTML = `
+            <div class="text-center py-32">
+                <h1 class="text-6xl font-bold text-red-700 mb-8">Article Not Found</h1>
+                <p class="text-2xl text-gray-700 mb-10">${msg}</p>
+                <a href="index.html" class="inline-block bg-primary text-white px-10 py-4 rounded-lg font-bold">← Back to Home</a>
+            </div>
+        `;
+    }
+
+    loadArticle();
   </script>
 </body>
 </html>
