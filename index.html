@@ -117,54 +117,56 @@
   padding: 4px 8px;
   margin-left: 6px;
 }
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
+.ticker {
+  animation: marquee 15s linear infinite;
+}
   </style>
 </head>
 <body class="font-sans text-foreground">
 
   <!-- Header -->
- <header class="bg-background border-b border-border">
+<header class="bg-background border-b border-border">
 
   <!-- Top Bar -->
   <div class="container mx-auto px-4 py-3">
     <div class="flex items-center justify-between">
       <div class="flex flex-col">
-        <span class="text-sm">Fri, Dec 19, 2025</span>
-        <a href="#" class="watch-live">Watch Live</a>
+        <span class="text-sm">Fri, Dec 27, 2025</span>
+        <a href="#" class="watch-live text-sm font-semibold text-red-600">Watch Live</a>
       </div>
 
-<div class="flex items-center justify-center p-4">
-  <div class="flex items-center gap-3">
-    <div class="relative flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-900 to-black rounded-lg border-2 border-blue-400 shadow-lg overflow-hidden">
-      <div class="absolute inset-0 opacity-30">
-        <div class="absolute top-1/2 left-0 w-full h-[1px] bg-white"></div>
-        <div class="absolute top-0 left-1/2 w-[1px] h-full bg-white"></div>
-        <div class="absolute inset-2 border border-white rounded-full"></div>
-      </div>
-      <span class="relative z-10 text-white font-bold text-xl md:text-2xl tracking-tighter">DGN</span>
-      <div class="absolute bottom-0 w-full h-1 bg-red-600"></div>
-    </div>
+      <!-- Logo -->
+      <div class="flex items-center justify-center">
+        <div class="flex items-center gap-3">
+          <div class="relative flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-900 to-black rounded-lg border-2 border-blue-400 shadow-lg overflow-hidden">
+            <span class="text-white font-bold text-xl md:text-2xl">DGN</span>
+            <div class="absolute bottom-0 w-full h-1 bg-red-600"></div>
+          </div>
 
-    <div class="flex flex-col leading-none">
-      <div class="flex items-baseline">
-        <span class="text-2xl md:text-4xl font-black text-slate-900 tracking-tighter">DGN</span>
-        <span class="text-2xl md:text-4xl font-light text-red-600 tracking-tighter">NEWS</span>
+          <div class="flex flex-col leading-none">
+            <div class="flex items-baseline">
+              <span class="text-2xl md:text-4xl font-black text-slate-900">DGN</span>
+              <span class="text-2xl md:text-4xl font-light text-red-600">NEWS</span>
+            </div>
+            <span class="text-[9px] uppercase font-bold tracking-widest text-slate-500">Digital Global Network</span>
+          </div>
+        </div>
       </div>
-      <span class="text-[8px] md:text-[10px] uppercase font-bold tracking-[0.2em] text-slate-500">Digital Global Network</span>
-    </div>
-  </div>
-</div>
 
-      <div class="text-right">
-        <a href="#" class="urdu-text text-2xl font-bold" style="color: var(--samaa-red);">
-          اردو
-        </a>
+      <!-- Urdu -->
+      <div>
+        <a href="#" class="text-2xl font-bold text-red-600">اردو</a>
       </div>
     </div>
   </div>
 
   <!-- Headlines Ticker -->
-  <div class="flex items-center bg-muted border-y border-border">
+ <div class="flex items-center bg-muted border-y border-border">
     <div class="headlines-box">Headlines</div>
     <div class="ticker-wrap">
       <div class="ticker py-2 px-4">
@@ -177,18 +179,32 @@
   </div>
 
   <!-- Navigation -->
-  <nav class="border-b border-border bg-background">
+  <nav class="bg-background border-b border-border">
     <div class="container mx-auto px-4">
       <div class="flex items-center justify-between py-3">
 
-        <!-- Mobile Burger -->
-        <button id="mobileMenuBtn" class="lg:hidden p-2">
-          <i class="fas fa-bars text-xl text-muted-foreground"></i>
-        </button>
+        <!-- Mobile: Burger + Buttons -->
+        <div class="lg:hidden flex items-center gap-3">
+          <button id="mobileMenuBtn" class="p-2 rounded-md border border-border bg-muted">
+            <i class="fas fa-bars text-xl text-slate-700"></i>
+          </button>
+
+          <div class="flex gap-2 overflow-x-auto">
+            <a href="index.html" class="px-4 py-2 text-sm font-semibold rounded-lg bg-slate-900 text-white whitespace-nowrap shadow-md hover:bg-slate-800 transition">
+              Home
+            </a>
+            <a href="pakistan.html" class="px-4 py-2 text-sm font-semibold rounded-lg bg-green-600 text-white whitespace-nowrap shadow-md hover:bg-green-500 transition">
+              Pakistan
+            </a>
+            <a href="latest-news.html" class="px-4 py-2 text-sm font-semibold rounded-lg bg-red-600 text-white whitespace-nowrap shadow-md hover:bg-red-500 transition">
+              Latest News
+            </a>
+          </div>
+        </div>
 
         <!-- Desktop Menu -->
         <div class="hidden lg:flex items-center space-x-6 flex-1">
-          <a href="index.html" class="nav-link">HOME</a>
+          <a href="index.html" class="nav-link font-semibold">HOME</a>
           <a href="pakistan.html" class="nav-link">PAKISTAN</a>
           <a href="latest-news.html" class="nav-link">LATEST NEWS</a>
           <a href="money.html" class="nav-link">MONEY</a>
@@ -197,19 +213,15 @@
           <a href="tech.html" class="nav-link">TECH</a>
           <a href="global.html" class="nav-link">GLOBAL</a>
           <a href="health.html" class="nav-link">HEALTH</a>
-          <a href="about-us.html" class="nav-link">About Us</a>
+          <a href="about-us.html" class="nav-link">ABOUT</a>
         </div>
 
         <!-- Right Icons -->
-        <div class="flex items-center space-x-3">
-          <button class="p-2">
-            <i class="fas fa-search text-muted-foreground"></i>
+        <div class="flex items-center gap-3">
+          <button class="hidden lg:block p-2">
+            <i class="fas fa-search text-slate-600"></i>
           </button>
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Flag_of_Pakistan.svg/23px-Flag_of_Pakistan.svg.png"
-            alt="Pakistan"
-            class="h-5"
-          />
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Flag_of_Pakistan.svg/23px-Flag_of_Pakistan.svg.png" alt="Pakistan" class="h-5"/>
         </div>
       </div>
     </div>
@@ -226,11 +238,13 @@
         <a href="tech.html" class="nav-link">TECH</a>
         <a href="global.html" class="nav-link">GLOBAL</a>
         <a href="health.html" class="nav-link">HEALTH</a>
-        <a href="about-us.html" class="nav-link">About Us</a>
+        <a href="about-us.html" class="nav-link">ABOUT</a>
       </div>
     </div>
   </nav>
 </header>
+
+
 
   <!-- Main Content -->
   <main class="container mx-auto px-4 py-8">
@@ -505,7 +519,12 @@
 
     </div>
 
-    <div class="border-t border-slate-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
+    <!-- Address -->
+    <div class="border-t border-slate-800 mt-16 pt-6 text-sm text-slate-400">
+      <p>Address: Plot No 26, 3B/26 G2, Nazimabad No 3, Karachi</p>
+    </div>
+
+    <div class="border-t border-slate-800 mt-4 pt-4 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
       <p>© 2025 DGNnews. Digital Global Network. All rights reserved.</p>
       <div class="flex space-x-6 mt-4 md:mt-0">
         <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
@@ -515,6 +534,8 @@
     </div>
   </div>
 </footer>
+
+
 <!-- <script>
 async function loadHomePage() {
     try {
@@ -653,6 +674,7 @@ latestPosts.forEach(post => {
 loadHomePage();
 </script> -->
 <script>
+
 async function loadHomePage() {
     try {
         const res = await fetch("https://newsing.work.gd/posts/home");
