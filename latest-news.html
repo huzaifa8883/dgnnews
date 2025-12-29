@@ -168,22 +168,37 @@
       </div>
 
       <!-- Logo -->
-      <div class="flex items-center justify-center">
-        <div class="flex items-center gap-3">
-          <div class="relative flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-900 to-black rounded-lg border-2 border-blue-400 shadow-lg overflow-hidden">
-            <span class="text-white font-bold text-xl md:text-2xl">DGN</span>
-            <div class="absolute bottom-0 w-full h-1 bg-red-600"></div>
-          </div>
+  <div class="flex items-center justify-center">
+  <div class="flex items-center gap-3">
+    
+    <div class="relative flex items-center justify-center
+                w-14 h-14 md:w-20 md:h-20
+                bg-gradient-to-br from-blue-900 to-black
+                rounded-lg border-2 border-blue-400 shadow-lg overflow-hidden">
+      <img
+        src="/images/logo.png"
+        alt="DGN News Logo"
+        class="w-full h-full object-contain p-1.5"
+      />
+      <div class="absolute bottom-0 w-full h-1 bg-red-600"></div>
+    </div>
 
-          <div class="flex flex-col leading-none">
-            <div class="flex items-baseline">
-              <span class="text-2xl md:text-4xl font-black text-slate-900">DGN</span>
-              <span class="text-2xl md:text-4xl font-light text-red-600">NEWS</span>
-            </div>
-            <span class="text-[9px] uppercase font-bold tracking-widest text-slate-500">Digital Global Network</span>
-          </div>
-        </div>
+    <div class="flex flex-col">
+      <div class="flex items-baseline leading-none">
+        <span class="text-xl md:text-3xl font-extrabold text-slate-900">
+          DGN
+        </span>
+        <span class="ml-1 text-xl md:text-3xl font-medium text-red-600">
+          NEWS
+        </span>
       </div>
+      <span class="mt-0.5 text-[8px] md:text-[9px] uppercase font-medium tracking-wider text-slate-500">
+        Digital Global Network
+      </span>
+    </div>
+
+  </div>
+</div>
 
       <!-- Urdu -->
       <div>
@@ -325,86 +340,97 @@
     </div>
   </main>
 <footer class="bg-[#0f172a] text-slate-300 mt-16 border-t-4 border-red-600">
-  <div class="container mx-auto px-6 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-      
-      <div class="space-y-6">
-        <div class="flex items-center gap-3">
-          <div class="relative flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-900 to-black rounded-lg border-2 border-blue-400 shadow-lg overflow-hidden shrink-0">
-            <div class="absolute inset-0 opacity-30">
-              <div class="absolute top-1/2 left-0 w-full h-[1px] bg-white"></div>
-              <div class="absolute top-0 left-1/2 w-[1px] h-full bg-white"></div>
-              <div class="absolute inset-2 border border-white rounded-full"></div>
-            </div>
-            <span class="relative z-10 text-white font-bold text-lg tracking-tighter">DGN</span>
-            <div class="absolute bottom-0 w-full h-1 bg-red-600"></div>
-          </div>
+  <div class="max-w-7xl mx-auto px-6 py-16">
 
-          <div class="flex flex-col leading-none">
-            <div class="flex items-baseline">
-              <span class="text-2xl font-black text-white tracking-tighter">DGN</span>
-              <span class="text-2xl font-light text-red-600 tracking-tighter">NEWS</span>
-            </div>
-            <span class="text-[8px] uppercase font-bold tracking-[0.2em] text-slate-400">Digital Global Network</span>
-          </div>
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+
+      <!-- Logo Section -->
+      <div class="flex flex-col items-center lg:items-start">
+        <div class="relative flex items-center justify-center
+                    w-20 h-20
+                    bg-gradient-to-br from-blue-900 to-black
+                    rounded-xl border-2 border-blue-400 shadow-lg overflow-hidden">
+          <img
+            src="/images/logo.png"
+            alt="DGN News Logo"
+            class="w-full h-full object-contain p-2"
+          />
+          <div class="absolute bottom-0 w-full h-1 bg-red-600"></div>
         </div>
-        <p class="text-sm leading-relaxed text-slate-400">
-          Digital Global Network (DGN) is your premier source for breaking news, investigative reports, and global analysis. Providing updates 24/7 across all digital platforms.
+
+        <p class="mt-4 text-xs text-slate-400 text-center lg:text-left max-w-xs">
+          Digital Global Network delivers reliable news, insights, and updates
+          from Pakistan and around the world.
         </p>
-        <div class="flex space-x-5">
-          <a href="#" class="hover:text-white transition-all transform hover:-translate-y-1"><i class="fab fa-facebook-f text-xl"></i></a>
-          <a href="#" class="hover:text-white transition-all transform hover:-translate-y-1"><i class="fab fa-twitter text-xl"></i></a>
-          <a href="#" class="hover:text-white transition-all transform hover:-translate-y-1"><i class="fab fa-youtube text-xl"></i></a>
-          <a href="#" class="hover:text-white transition-all transform hover:-translate-y-1"><i class="fab fa-instagram text-xl"></i></a>
-        </div>
       </div>
 
+      <!-- Categories -->
       <div>
-        <h4 class="text-white font-bold uppercase tracking-wider text-sm mb-6 border-b border-slate-700 pb-2 inline-block">Categories</h4>
+        <h4 class="text-white font-bold uppercase tracking-wider text-sm mb-6 border-b border-slate-700 pb-2 inline-block">
+          Categories
+        </h4>
         <ul class="grid grid-cols-2 gap-y-3 gap-x-4">
-          <li><a href="#" class="text-sm hover:text-red-500 transition-colors hover:underline">Pakistan</a></li>
-          <li><a href="#" class="text-sm hover:text-red-500 transition-colors hover:underline">World</a></li>
-          <li><a href="#" class="text-sm hover:text-red-500 transition-colors hover:underline">Sports</a></li>
-          <li><a href="#" class="text-sm hover:text-red-500 transition-colors hover:underline">Business</a></li>
-          <li><a href="#" class="text-sm hover:text-red-500 transition-colors hover:underline">Tech</a></li>
-          <li><a href="#" class="text-sm hover:text-red-500 transition-colors hover:underline">Health</a></li>
+          <li><a href="#" class="text-sm hover:text-red-500 hover:underline">Pakistan</a></li>
+          <li><a href="#" class="text-sm hover:text-red-500 hover:underline">World</a></li>
+          <li><a href="#" class="text-sm hover:text-red-500 hover:underline">Sports</a></li>
+          <li><a href="#" class="text-sm hover:text-red-500 hover:underline">Business</a></li>
+          <li><a href="#" class="text-sm hover:text-red-500 hover:underline">Tech</a></li>
+          <li><a href="#" class="text-sm hover:text-red-500 hover:underline">Health</a></li>
         </ul>
       </div>
 
+      <!-- Company -->
       <div>
-        <h4 class="text-white font-bold uppercase tracking-wider text-sm mb-6 border-b border-slate-700 pb-2 inline-block">Company</h4>
+        <h4 class="text-white font-bold uppercase tracking-wider text-sm mb-6 border-b border-slate-700 pb-2 inline-block">
+          Company
+        </h4>
         <ul class="space-y-3">
-          <li><a href="#" class="text-sm hover:text-red-500 transition-colors">About Our Network</a></li>
-          <li><a href="#" class="text-sm hover:text-red-500 transition-colors">Career Opportunities</a></li>
-          <li><a href="#" class="text-sm hover:text-red-500 transition-colors">Advertise with Us</a></li>
-          <li><a href="#" class="text-sm hover:text-red-500 transition-colors">Contact Support</a></li>
+          <li><a href="#" class="text-sm hover:text-red-500">About Our Network</a></li>
+          <li><a href="#" class="text-sm hover:text-red-500">Career Opportunities</a></li>
+          <li><a href="#" class="text-sm hover:text-red-500">Advertise with Us</a></li>
+          <li><a href="#" class="text-sm hover:text-red-500">Contact Support</a></li>
         </ul>
       </div>
 
+      <!-- Newsletter -->
       <div>
-        <h4 class="text-white font-bold uppercase tracking-wider text-sm mb-6 border-b border-slate-700 pb-2 inline-block">Stay Updated</h4>
-        <p class="text-sm text-slate-400 mb-4">Get the latest headlines delivered to your inbox.</p>
+        <h4 class="text-white font-bold uppercase tracking-wider text-sm mb-6 border-b border-slate-700 pb-2 inline-block">
+          Stay Updated
+        </h4>
+        <p class="text-sm text-slate-400 mb-4">
+          Get the latest headlines delivered to your inbox.
+        </p>
         <form class="flex flex-col space-y-2">
-          <input type="email" placeholder="Email Address" class="bg-slate-800 border-none px-4 py-2 rounded text-sm focus:ring-2 focus:ring-red-600 outline-none text-white">
-          <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded text-sm transition-colors uppercase">Subscribe</button>
+          <input
+            type="email"
+            placeholder="Email Address"
+            class="bg-slate-800 px-4 py-2 rounded text-sm focus:ring-2 focus:ring-red-600 outline-none text-white"
+          />
+          <button
+            class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded text-sm uppercase transition">
+            Subscribe
+          </button>
         </form>
       </div>
 
     </div>
 
     <!-- Address -->
-    <div class="border-t border-slate-800 mt-16 pt-6 text-sm text-slate-400">
-      <p>Address: Plot No 26, 3B/26 G2, Nazimabad No 3, Karachi</p>
+    <div class="border-t border-slate-800 mt-16 pt-6 text-sm text-slate-400 text-center lg:text-left">
+      Address: Plot No 26, 3B/26 G2, Nazimabad No 3, Karachi
     </div>
 
+    <!-- Bottom Bar -->
     <div class="border-t border-slate-800 mt-4 pt-4 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
-      <p>© 2025 DGNnews. Digital Global Network. All rights reserved.</p>
+      <p>© 2025 DGN News. Digital Global Network. All rights reserved.</p>
       <div class="flex space-x-6 mt-4 md:mt-0">
-        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-        <a href="#" class="hover:text-white transition-colors">Terms of Use</a>
-        <a href="#" class="hover:text-white transition-colors">Cookie Settings</a>
+        <a href="#" class="hover:text-white">Privacy Policy</a>
+        <a href="#" class="hover:text-white">Terms of Use</a>
+        <a href="#" class="hover:text-white">Cookie Settings</a>
       </div>
     </div>
+
   </div>
 </footer>
 
