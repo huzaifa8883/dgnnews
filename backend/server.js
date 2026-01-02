@@ -12,7 +12,7 @@ const app = express();
 // ---------- MIDDLEWARE ----------
 app.use(
   cors({
-    origin: "https://dgnnews.vercel.app",
+    origin: "https://www.dgnnews.com",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
