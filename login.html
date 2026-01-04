@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+
+  <!-- Login Card -->
+  <div class="bg-gray-800/80 backdrop-blur-md p-10 rounded-2xl shadow-2xl w-96">
+    <h2 class="text-3xl font-extrabold text-white mb-6 text-center tracking-tight">Admin Login</h2>
+
+    <div class="flex flex-col gap-4">
+      <div class="relative">
+        <input id="username" type="text" placeholder="Username" class="p-3 rounded-lg bg-gray-700 text-white w-full focus:ring-2 focus:ring-blue-500 outline-none" />
+      </div>
+      <div class="relative">
+        <input id="password" type="password" placeholder="Password" class="p-3 rounded-lg bg-gray-700 text-white w-full focus:ring-2 focus:ring-blue-500 outline-none" />
+        <button type="button" id="togglePassword" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
+          Show
+        </button>
+      </div>
+
+      <button onclick="login()" class="bg-blue-600 hover:bg-blue-500 text-white p-3 rounded-lg font-semibold transition-colors">Login</button>
+      <p id="loginError" class="text-red-500 text-sm text-center hidden mt-2">Invalid username or password</p>
+    </div>
+  </div>
+
+  <script>
+    // Hard-coded credentials
+    const correctUsername = "DGNnewskhi";
+    const correctPassword = "Water1122@#$";
+
+    function login() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+
+      if(username === correctUsername && password === correctPassword) {
+        window.location.href = "superadmin.html";
+      } else {
+        const errorMsg = document.getElementById("loginError");
+        errorMsg.classList.remove("hidden");
+      }
+    }
+
+    // Show/hide password toggle
+    const togglePasswordBtn = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("password");
+
+    togglePasswordBtn.addEventListener("click", () => {
+      if(passwordInput.type === "password") {
+        passwordInput.type = "text";
+        togglePasswordBtn.textContent = "Hide";
+      } else {
+        passwordInput.type = "password";
+        togglePasswordBtn.textContent = "Show";
+      }
+    });
+
+    // Enter key triggers login
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Enter") login();
+    });
+  </script>
+
+</body>
+</html>

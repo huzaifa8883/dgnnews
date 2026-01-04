@@ -62,6 +62,9 @@
     </style>
 </head>
 <body class="overflow-hidden h-screen flex bg-dark-900 text-gray-300">
+    <!-- Login Page -->
+
+  
 
     <!-- Overlay for mobile sidebar -->
     <div id="overlay" class="fixed inset-0 bg-black/80 z-40 hidden lg:hidden backdrop-blur-sm"></div>
@@ -774,6 +777,24 @@ function removeSection(button) {
     }
 }
 </script> -->
+<script>
+  const correctUsername = "admin";
+  const correctPassword = "password123";
+
+  function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    if(username === correctUsername && password === correctPassword) {
+      // Hide login, show admin content
+      document.getElementById("loginPage").classList.add("hidden");
+      document.getElementById("adminContent").classList.remove("hidden");
+    } else {
+      document.getElementById("loginError").classList.remove("hidden");
+    }
+  }
+</script>
+
 <script>
     lucide.createIcons();
 
