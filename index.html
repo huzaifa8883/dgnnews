@@ -125,6 +125,36 @@
 .ticker {
   animation: marquee 15s linear infinite;
 }
+
+/* Hide all Google Translate elements */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0px !important;
+}
+
+#google_translate_element {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  display: none !important;
+}
+
+.skiptranslate {
+  display: none !important;
+}
+
+iframe.skiptranslate {
+  display: none !important;
+}
+
+body > .skiptranslate {
+  display: none !important;
+}
+
   </style>
 </head>
 <body class="font-sans text-foreground">
@@ -178,7 +208,7 @@
 
       <!-- Urdu -->
       <div>
-        <a href="#" class="text-2xl font-bold text-red-600">اردو</a>
+        <button id="urduBtn" class="text-2xl font-bold text-red-600 cursor-pointer hover:text-red-700 transition">اردو</button>
       </div>
     </div>
   </div>
@@ -281,24 +311,6 @@
     </div>
 
 
-        <!-- Popular Stories -->
-        <!-- <div>
-          <h3 class="popular-stories-title">POPULAR STORIES</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <article class="cursor-pointer">
-              <img src="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=300&h=180&fit=crop" alt="UN experts" class="w-full h-40 object-cover mb-3">
-              <h4 class="font-bold text-sm leading-tight hover:text-primary transition-colors">
-                UN experts declare India's Indus Waters Treaty suspension illegal
-              </h4>
-            </article>
-            <article class="cursor-pointer">
-              <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=300&h=180&fit=crop" alt="Airport incident" class="w-full h-40 object-cover mb-3">
-              <h4 class="font-bold text-sm leading-tight hover:text-primary transition-colors">
-                Airline staff tear passenger's passport at Karachi Airport, investigations reveal
-              </h4>
-            </article>
-          </div>
-        </div> -->
 <div>
   <h3 class="popular-stories-title">POPULAR STORIES</h3>
   <div class="popular-posts grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -306,73 +318,7 @@
   </div>
 </div>
 
-        <!-- Latest News -->
-        <!-- <div>
-          <h2 class="section-title mb-4">LATEST</h2>
-          <div class="space-y-4">
-            <article class="flex gap-4 pb-4 news-separator">
-              <div class="flex-1">
-                <h3 class="text-lg font-bold leading-tight mb-2 cursor-pointer hover:text-primary transition-colors">
-                  England need to produce something magical to save Ashes, says bowling coach
-                </h3>
-                <p class="text-sm text-muted-foreground mb-2">England struggle to remove Australian batters in third Test</p>
-                <span class="timestamp">16 MINUTES AGO</span>
-              </div>
-              <div class="flex-shrink-0">
-                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=150&h=100&fit=crop" alt="" class="w-24 h-20 md:w-32 md:h-24 object-cover">
-              </div>
-            </article>
-            <article class="flex gap-4 pb-4 news-separator">
-              <div class="flex-1">
-                <h3 class="text-lg font-bold leading-tight mb-2 cursor-pointer hover:text-primary transition-colors">
-                  UK government hacked in October, minister confirms
-                </h3>
-                <p class="text-sm text-muted-foreground mb-2">Storm 1849 is China-linked gang which is part of state-aligned hacking apparatus</p>
-                <span class="timestamp">20 MINUTES AGO</span>
-              </div>
-              <div class="flex-shrink-0">
-                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=150&h=100&fit=crop" alt="" class="w-24 h-20 md:w-32 md:h-24 object-cover">
-              </div>
-            </article>
-            <article class="flex gap-4 pb-4 news-separator">
-              <div class="flex-1">
-                <h3 class="text-lg font-bold leading-tight mb-2 cursor-pointer hover:text-primary transition-colors">
-                  Friends find diamond while working in Indian field
-                </h3>
-                <p class="text-sm text-muted-foreground mb-2">Incident takes place in Panna district of Madhya Pradesh</p>
-                <span class="timestamp">35 MINUTES AGO</span>
-              </div>
-              <div class="flex-shrink-0">
-                <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=150&h=100&fit=crop" alt="" class="w-24 h-20 md:w-32 md:h-24 object-cover">
-              </div>
-            </article>
-            <article class="flex gap-4 pb-4 news-separator">
-              <div class="flex-1">
-                <h3 class="text-lg font-bold leading-tight mb-2 cursor-pointer hover:text-primary transition-colors">
-                  Sharp decline in Chenab River inflows recorded
-                </h3>
-                <p class="text-sm text-muted-foreground mb-2">At Chashma Barrage, water inflow has been recorded at 26,300 cusecs</p>
-                <span class="timestamp">45 MINUTES AGO</span>
-              </div>
-              <div class="flex-shrink-0">
-                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=150&h=100&fit=crop" alt="" class="w-24 h-20 md:w-32 md:h-24 object-cover">
-              </div>
-            </article>
-            <article class="flex gap-4 pb-4">
-              <div class="flex-1">
-                <h3 class="text-lg font-bold leading-tight mb-2 cursor-pointer hover:text-primary transition-colors">
-                  Major earthquake strikes coastal region, tsunami warning issued
-                </h3>
-                <p class="text-sm text-muted-foreground mb-2">Authorities urge residents to move to higher ground immediately</p>
-                <span class="timestamp">1 HOUR AGO</span>
-              </div>
-              <div class="flex-shrink-0">
-                <img src="https://images.unsplash.com/photo-1547683905-f686c993aae5?w=150&h=100&fit=crop" alt="" class="w-24 h-20 md:w-32 md:h-24 object-cover">
-              </div>
-            </article>
-          </div>
-        </div> -->
-        <div>
+<div>
   <h2 class="section-title mb-4">LATEST</h2>
   <div class="latest-posts space-y-4">
     <!-- JS will inject latest news here -->
@@ -392,72 +338,7 @@
         </div>
 
         <!-- Featured Section -->
-        <!-- <div>
-          <h3 class="featured-title">FEATURED</h3>
-          <div class="space-y-4">
-            <article class="flex gap-3 pb-4 news-separator">
-              <div class="flex-1">
-                <span class="category-badge">LIFESTYLE</span>
-                <h4 class="font-bold text-sm leading-tight mt-1 mb-1 cursor-pointer hover:text-primary transition-colors">
-                  Photos: Rahat Fateh Ali Khan's daughter Maheen's mayon
-                </h4>
-                <p class="text-xs text-muted-foreground mb-1 line-clamp-2">
-                  Legendary singer's family shares heartwarming moments as wedding festivities begin
-                </p>
-                <span class="timestamp">2 HOURS AGO</span>
-              </div>
-              <div class="flex-shrink-0">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=100&h=80&fit=crop" alt="" class="w-20 h-16 object-cover">
-              </div>
-            </article>
-            <article class="flex gap-3 pb-4 news-separator">
-              <div class="flex-1">
-                <span class="category-badge">PAKISTAN</span>
-                <h4 class="font-bold text-sm leading-tight mt-1 mb-1 cursor-pointer hover:text-primary transition-colors">
-                  PM orders tougher action against smuggling, tax evasion
-                </h4>
-                <p class="text-xs text-muted-foreground mb-1 line-clamp-2">
-                  Shehbaz Sharif praises customs crackdown, says no leniency for smugglers or tax evaders
-                </p>
-                <span class="timestamp">1 HOUR AGO</span>
-              </div>
-              <div class="flex-shrink-0">
-                <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=100&h=80&fit=crop" alt="" class="w-20 h-16 object-cover">
-              </div>
-            </article>
-            <article class="flex gap-3 pb-4 news-separator">
-              <div class="flex-1">
-                <span class="category-badge">GLOBAL</span>
-                <h4 class="font-bold text-sm leading-tight mt-1 mb-1 cursor-pointer hover:text-primary transition-colors">
-                  Brown University gunman shooting found dead, linked to MIT killing
-                </h4>
-                <p class="text-xs text-muted-foreground mb-1 line-clamp-2">
-                  Gunman found dead in suspected connection to university shooting
-                </p>
-                <span class="timestamp">3 HOURS AGO</span>
-              </div>
-              <div class="flex-shrink-0">
-                <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=100&h=80&fit=crop" alt="" class="w-20 h-16 object-cover">
-              </div>
-            </article>
-            <article class="flex gap-3 pb-4">
-              <div class="flex-1">
-                <span class="category-badge">SPORTS</span>
-                <h4 class="font-bold text-sm leading-tight mt-1 mb-1 cursor-pointer hover:text-primary transition-colors">
-                  Pakistan cricket team announces squad for upcoming series
-                </h4>
-                <p class="text-xs text-muted-foreground mb-1 line-clamp-2">
-                  Several changes made to the playing eleven ahead of crucial matches
-                </p>
-                <span class="timestamp">4 HOURS AGO</span>
-              </div>
-              <div class="flex-shrink-0">
-                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=100&h=80&fit=crop" alt="" class="w-20 h-16 object-cover">
-              </div>
-            </article>
-          </div>
-        </div> -->
-        <div>
+<div>
   <h3 class="featured-title mb-4 text-xl font-bold">FEATURED</h3>
   <div class="featured-posts space-y-4">
     <!-- JS will inject featured articles here -->
@@ -564,151 +445,82 @@
   </div>
 </footer>
 
+<div id="google_translate_element"></div>
 
-<!-- <script>
-async function loadHomePage() {
-    try {
-        const res = await fetch("http://localhost:5000/api/posts/home");
-        if (!res.ok) throw new Error("Failed to fetch home data");
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,ur'
+  }, 'google_translate_element');
+}
+</script>
 
-        const data = await res.json();
-        const { topStory, featuredPosts } = data;
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-        // Populate Top Story
-        if (topStory) {
-            document.querySelector(".top-story-badge").innerText = "Top Story";
-            document.querySelector(".top-story-image").src = topStory.image;
-            document.querySelector(".top-story-title").innerText = topStory.title;
-            document.querySelector(".top-story-desc").innerText = topStory.desc;
-        }
-
-        // Populate Featured Posts
-        const featuredContainer = document.querySelector(".featured-posts");
-        featuredPosts.forEach(post => {
-            const postEl = document.createElement("article");
-            postEl.className = "flex gap-4 p-4 border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200";
-            postEl.innerHTML = `
-                <div class="flex-1">
-                    <span class="category-badge text-xs font-semibold text-red-600 uppercase tracking-wide">${post.category}</span>
-                    <h4 class="font-serif font-bold text-lg mt-1 mb-2 cursor-pointer hover:text-red-600 transition-colors">${post.title}</h4>
-                    <p class="text-gray-600 text-sm md:text-base leading-relaxed line-clamp-3">${post.desc}</p>
-                </div>
-                <div class="flex-shrink-0">
-                    <img src="${post.image}" alt="${post.title}" class="w-28 h-20 md:w-32 md:h-24 object-cover rounded-md">
-                </div>
-            `;
-            featuredContainer.appendChild(postEl);
-        });
-
-    } catch (err) {
-        console.error(err);
-    }
+<script>
+// Function to set cookie for Google Translate
+function setCookie(name, value, days) {
+  var expires = "";
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
 
-loadHomePage();
-</script> -->
-<!-- <script>
-async function loadHomePage() {
-    try {
-        const res = await fetch("http://localhost:5000/api/posts/home");
-        if (!res.ok) throw new Error("Failed to fetch home data");
-
-        const { topStory, featuredPosts, popularPosts, latestPosts } = await res.json();
-
-        // ---- Populate Top Story ----
-        if (topStory) {
-            document.querySelector(".top-story-badge").innerText = "Top Story";
-            document.querySelector(".top-story-image").src = topStory.image;
-            document.querySelector(".top-story-title").innerText = topStory.title;
-            document.querySelector(".top-story-desc").innerText = topStory.desc;
-        }
-
-        // ---- Populate Featured ----
-        const featuredContainer = document.querySelector(".featured-posts");
-featuredContainer.innerHTML = ""; // Clear previous content
-
-featuredPosts.forEach(post => {
-    const postEl = document.createElement("article");
-    postEl.className = "flex flex-col md:flex-row gap-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer";
-
-    postEl.innerHTML = `
-        <div class="flex-1 flex flex-col justify-between">
-            <div>
-                <span class="category-badge bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded mb-2 inline-block">${"Featured"}</span>
-                <h4 class="text-lg md:text-xl font-bold leading-snug mb-2 hover:text-primary transition-colors">${post.title}</h4>
-                <p class="text-sm md:text-base text-gray-600 mb-3 line-clamp-3">${post.desc}</p>
-            </div>
-            <span class="timestamp text-[10px] md:text-xs text-gray-400">${new Date(post.createdAt).toLocaleString('default', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
-        </div>
-        <div class="flex-shrink-0 w-full md:w-40 lg:w-48">
-            <img src="${post.image}" alt="${post.title}" class="w-full h-32 md:h-40 lg:h-48 object-cover rounded-md">
-        </div>
-    `;
-    featuredContainer.appendChild(postEl);
-});
-
-
-        // ---- Populate Popular ----
-        // ---- Populate Popular ----
-const popularContainer = document.querySelector(".popular-posts");
-popularPosts.forEach(post => {
-    const postEl = document.createElement("article");
-    postEl.className = "flex gap-3 pb-4 news-separator cursor-pointer hover:bg-gray-50 transition-colors rounded-md p-2";
-
-    postEl.innerHTML = `
-        <div class="flex-1">
-            <span class="category-badge bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">${"Popular"}</span>
-            <h4 class="font-bold text-sm md:text-base leading-tight mt-1 mb-2 hover:text-primary transition-colors">${post.title}</h4>
-            <p class="text-xs md:text-sm text-muted-foreground line-clamp-2 mb-1">${post.desc}</p>
-            <span class="timestamp text-[10px] md:text-xs text-gray-500">${new Date(post.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} ago</span>
-        </div>
-        <div class="flex-shrink-0 w-28 md:w-32">
-            <img src="${post.image}" alt="${post.title}" class="w-full h-24 md:h-28 object-cover rounded-md">
-        </div>
-    `;
-    popularContainer.appendChild(postEl);
-});
-
-
-        // ---- Populate Latest ----
-   const latestContainer = document.querySelector(".latest-posts");
-latestContainer.innerHTML = ""; // Clear previous content
-
-latestPosts.forEach(post => {
-    const postEl = document.createElement("article");
-    postEl.className = "flex flex-col md:flex-row gap-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow cursor-pointer";
-
-    postEl.innerHTML = `
-        <div class="flex-1 flex flex-col justify-between">
-            <div>
-                <span class="category-badge bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded mb-2 inline-block">${"Latest"}</span>
-                <h3 class="text-lg md:text-xl font-bold leading-snug mb-2 hover:text-primary transition-colors">${post.title}</h3>
-                <p class="text-sm md:text-base text-gray-600 mb-3 line-clamp-3">${post.desc}</p>
-            </div>
-            <span class="timestamp text-[10px] md:text-xs text-gray-400">${new Date(post.createdAt).toLocaleString('default', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
-        </div>
-        <div class="flex-shrink-0 w-full md:w-40 lg:w-48">
-            <img src="${post.image}" alt="${post.title}" class="w-full h-32 md:h-40 lg:h-48 object-cover rounded-md">
-        </div>
-    `;
-    latestContainer.appendChild(postEl);
-});
-
-
-    } catch (err) {
-        console.error(err);
-    }
+// Function to get cookie
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
 }
 
-loadHomePage();
-</script> -->
+// Urdu button click handler
+document.getElementById('urduBtn').addEventListener('click', function() {
+  var currentLang = getCookie('googtrans');
+  
+  if (currentLang === '/en/ur') {
+    // Switch to English
+    setCookie('googtrans', '/en/en', 1);
+    setCookie('googtrans', '/en/en', 1);
+    this.innerText = 'اردو';
+    location.reload();
+  } else {
+    // Switch to Urdu
+    setCookie('googtrans', '/en/ur', 1);
+    setCookie('googtrans', '/en/ur', 1);
+    this.innerText = 'English';
+    location.reload();
+  }
+});
+
+// Check current language on page load
+window.addEventListener('load', function() {
+  var currentLang = getCookie('googtrans');
+  var btn = document.getElementById('urduBtn');
+  
+  if (currentLang === '/en/ur') {
+    btn.innerText = 'English';
+  } else {
+    btn.innerText = 'اردو';
+  }
+});
+</script>
+
 <script>
   const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
   const today = new Date();
   document.getElementById('currentDate').innerText = today.toLocaleDateString('en-US', options);
 </script>
-<script>
 
+<script>
 async function loadHomePage() {
     try {
         const res = await fetch("https://newsing.work.gd/posts/home");
@@ -847,13 +659,12 @@ async function loadHomePage() {
 
 loadHomePage();
 
- const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-  const mobileMenu = document.getElementById("mobileMenu");
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
 
-  mobileMenuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-  });
+mobileMenuBtn.addEventListener("click", () => {
+  mobileMenu.classList.toggle("hidden");
+});
 </script>
 </body>
-
 </html>
